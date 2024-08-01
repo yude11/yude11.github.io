@@ -193,6 +193,31 @@
     
     
     <entry>
+      <title>统计文本文件的行数</title>
+      <link href="/shell/count/"/>
+      <url>/shell/count/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">统计文件夹下所有文本文件除空格行数</span></span><br><span class="line"></span><br><span class="line">myfile=$(find ../ -type f)</span><br><span class="line"></span><br><span class="line">count=0</span><br><span class="line"></span><br><span class="line">for var in $myfile</span><br><span class="line">do</span><br><span class="line">  echo $var</span><br><span class="line">  count=`expr $(grep -c . $&#123;var&#125;) + $count`</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> <span class="variable">$myfile</span></span></span><br><span class="line">echo $count</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> shell </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git</title>
       <link href="/tools/Git/"/>
       <url>/tools/Git/</url>
@@ -200,6 +225,18 @@
         <content type="html"><![CDATA[<h3 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h3><p><a href="https://www.runoob.com/git/git-tutorial.html">Git教程</a>  (菜鸟教程)</p><h4 id="结构介绍"><a href="#结构介绍" class="headerlink" title="结构介绍"></a>结构介绍</h4><p>git的版本管理结构是一个有向图，每个版本是图中的一个节点，每个节点间用有向边来连接。<br>主分支master: 是项目的主要方向.<br>从主分支可以有多个branch: 项目要同步开发,或实现不同功能要有分支,分支可以最终并入主线<br>git编辑中有一个head指针: 可以指向任意节点,将项目转换成此节点的状态</p><p>git工作区,暂存区,版本库:</p><ul><li><p>版本库: 所有节点的内容存在里面(在&#x2F;.git中)</p></li><li><p>工作区: 当前的主文件夹中的内容.</p></li><li><p>暂存区: 与当前版本的内容相同,每次git add后将暂存区的文件修改,commit将暂存区变为新版本.(在.&#x2F;git&#x2F;index)中</p></li></ul><p><a href="https://www.runoob.com/git/git-workspace-index-repo.html">工作区, 暂存区, 版本库的关系</a> (看图)</p><h4 id="Git基本指令："><a href="#Git基本指令：" class="headerlink" title="Git基本指令："></a>Git基本指令：</h4><p><a href="http://onlywei.github.io/explain-git-with-d3/">git操作图示网站</a><br><code>git config [-参数]</code>: 编辑git的配置文件</p><ul><li><p><code>-e</code>: 编辑git配置文件(编辑器)</p></li><li><p><code>--global</code>: 将编辑应用到全局</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">编辑用户的信息(直接):</span><br><span class="line">git config --global user.name &quot;runoob&quot;</span><br><span class="line">git config --global user.email test@runoob.com </span><br></pre></td></tr></table></figure></li></ul><p><code>git init</code>: 初始化仓库</p><p><code>git clone &lt;仓库&gt; &lt;复制路径&gt;</code>: 拷贝一个远程仓库</p><p><code>git add + [file1] [file2]...</code> : 将文件添加到暂存区</p><ol><li>参数可为文件夹</li><li>参数为’.’ : 提交工作区所有文件</li></ol><p><code>git commit</code>: 提交当前版本作为一个新的节点</p><ul><li><code>-a</code>: 可以不进行add操作就提交版本</li><li><code>-m</code> + “comment”: 不打开编辑器直接写版本信息</li></ul><p><code>git status</code>:打印当前工作区状态: 1.当前分支 2.当前分支与远程分支的关系 3.add没commit的文件 4.未add的文件</p><ul><li><code>-s</code>: 简短输出</li></ul><p><code>git branch [-参数] + name</code>: 产生一个新分支 </p><ul><li><code>无参数</code>: 打印当前所有分支</li><li><code>-d</code>: 删除该名字的分支</li></ul><p><code>git checkout [-参数] + name</code>: 将head指针指向名为name的节点</p><ul><li><code>-b</code>: 创建一个新节点并将head节点移动到新节点</li><li><code>-</code>: 快速回到上一个访问的分支</li><li><code>-- &lt;file&gt;</code> : 撤销该文件的所有修改</li><li><code>.</code>: 指向当前节点, 撤销工作区的所有修改</li></ul><p><code>git diff</code>:查看尚未缓存的改动(与上一节点(可以称为当前版本))</p><ul><li><code>--cache</code>: 查看已缓存的改动(与上一节点)</li><li><code>[file]</code>: 显示与缓存区的差异(与工作区)</li><li><code>[branch1] [branch2]</code>: 比较两节点的差异</li></ul><p><code>git reset [--soft | --mixed | --hard] HEAD^</code>: 回退版本(<code>mixed</code>为默认) (<code>HEAD</code>表示当前版本 <code>HAED^</code>表示上一版本 <code>HEAD^^</code>同理 也可以用<code>HEAD~0</code> <code>HEAD~1</code> 来表示)</p><ul><li><code>reset HEAD</code>: 可以用来清除已缓存的内容</li><li><code>reset HEAD^ [file]</code>: 回退单一文件</li><li><code>--soft</code>: 只是想撤回commit操作,不改变工作区与暂存区的文件</li><li><code>--mixed</code>: 撤回commit操作,删除缓存区,不改变工作区(默认)</li><li><code>--hard</code>: 完全还原到回退版本的文件状态</li></ul><p><code>git revert</code>: 回退到某一版本,但会作为一次新的commit提交</p><ul><li><code>-m</code>: 关于有分支冲突的时候,选择回退那一个</li></ul><p></p><p><code>git rm</code>: 删除文件,可能用普通的rm命令不会删除缓存区的文件所以会有问题<br><code>git mv</code>: 移动文件,重命名<br><code>git merge</code>: 将创建的分支与主分支合并(合并冲突要注意)<br><code>git tag [-参数] [标签] [commit(默认HEAD)]</code>: 给一次commit打上标签(可以用来标示一个重要的阶段)</p><ul><li><code>-a</code>: 在创建带注解的标签(标签时间,标签作者…) #推荐带这个参数</li><li><code>无参数</code>: 查看所有标签</li></ul><p><code>git log [-参数] [commit/branch]</code>: 查看提交记录<br><code>git blame [-参数] &lt;文件路径&gt;</code>: 显示文件中每一行的修改记录<br><code>git fetch [仓库名]</code>: 从远程项目中下载新分支与数据<br><code>git merge [仓库名]/[branch]</code>: 从远程仓库提取数据并尝试合并到当前分支(与fetch命令连用)<br><code>git push [仓库名] [branch]</code>: 将你的分支推送到远程仓库</p><p><code>git remote</code>: 与远程仓库有关的命令</p><ul><li><code>git remote</code>: 查看已经配置的远程仓库.</li><li><code>git remote -v</code>: 查看仓库并显示他们的URL.</li><li><code>git remote add &lt;remote_name&gt; &lt;remote_url&gt;</code>: 添加一个新的仓库.</li><li><code>git remote rename &lt;old_name&gt; &lt;new_name&gt;</code>: 将已经配置的仓库重命名.</li><li><code>git remote remove &lt;remote_name&gt;</code>: 删除指定仓库.</li><li><code>git remote set-url &lt;remote_name&gt; &lt;new_url&gt;</code>: 修改指定仓库的URL.</li><li><code>git remote show &lt;remote_name&gt;</code>: 查看远程仓库的详细信息.</li></ul><p>git的学习到此结束了!!!!![end…]</p>]]></content>
       
       
+      <categories>
+          
+          <category> tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
       
     </entry>
     
@@ -213,6 +250,18 @@
         <content type="html"><![CDATA[<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p><strong>正则表达式</strong>: 是用于匹配和操作文本的强大工具<br><a href="https://deerchao.cn/tutorials/regex/regex.htm">https://deerchao.cn/tutorials/regex/regex.htm</a> #教程</p><p><a href="https://regex101.com/">https://regex101.com/</a>      #匹配练习工具</p><p>正则表达式是由普通字符(a-z等)以及特殊字符(元字符)组成的文字模式,格式<code>/pattern/flags</code></p><ul><li><p>普通字符:包括所有大小写字母,所有数字标点符号以及一些其他符号<br><code>[ABC]</code>: 匹配…中所有的字符<br><code>[^ABC]</code>: 匹配[…]中以外的字符<br><code>[A-Z]</code>: A-Z匹配所有大写字母,a-z撇批所有小写字母<br><code>.</code>: 匹配除(\n,\r)外所有字符,相当于[^\n\r]<br><code>[\s\S]</code>: \s匹配所有空白符,\S匹配所有非空白符<br><code>\w</code>: 匹配字母,数字,下划线,相当于[A-Za-z0-9_]<br><code>\d</code>: 匹配数字,相当于[0-9]</p></li><li><p>修饰符: i,g,m,s<br>  <code>g</code>: 查找字符串中所有的匹配项 #&#x2F;haha&#x2F;g 匹配 “nihao haha11haha” 则会匹配到两个haha,不然空格就结束匹配<br>  <code>i</code>: 不区分大小写匹配<br>  <code>m</code>: 多行匹配,使边界字符^和$匹配每一行的开头与结尾,搭配^使g可以多行匹配<br>  <code>s</code>: 使.可以匹配换行符  #&#x2F;haha.&#x2F;s 匹配 “haha\n” 没加s的话匹配不了</p></li><li><p>元字符:<br>  <code>*</code>: 匹配前面一个字符0-n次<br>  <code>+</code>: 匹配前面一个字符1-n次<br>  <code>?</code>: 匹配前面一个字符0或1次<br>  <code>&#123;&#125;</code>: {n}匹配前面一个字符出现n次,{n1,n2}匹配前面一个字符n1-n2次<br>  <code>(ab)+</code>: 匹配ab多次<br>  <code>(str1|str2)</code>: 匹配str1或str2<br>  <code>[]</code>: 匹配中间全部字符<br>  <code>^</code>: 匹配行首<br>  <code>$</code>: 匹配行尾<br>  <code>\b</code>: 标记字符边界(全字匹配)<br>  <code>\s</code>: 匹配空白符(包括\n,\t,\r)<br>  <code>\S</code>: 匹配非空白符<br>  <code>\w</code>: 匹配字母数字下划线<br>  <code>\W</code>: \w以外字符</p></li><li><p>贪婪&#x2F;懒惰匹配<br><code>&lt;.+&gt;</code>: 默认贪婪匹配任意字符 #尽可能匹配更多的字符,这会将所有匹配成一个字符串<br><code>&lt;.+?&gt;</code>: 懒惰匹配任意字符 #这样会将字符一个一个匹配</p></li></ul>]]></content>
       
       
+      <categories>
+          
+          <category> tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 正则表达式 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -239,31 +288,6 @@
         <content type="html"><![CDATA[]]></content>
       
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>test</title>
-      <link href="/test/test/"/>
-      <url>/test/test/</url>
-      
-        <content type="html"><![CDATA[<h2 id="HELLO-WORLD"><a href="#HELLO-WORLD" class="headerlink" title="HELLO WORLD"></a>HELLO WORLD</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> test1 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> test1 </tag>
-            
-        </tags>
       
     </entry>
     
