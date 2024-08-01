@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>openMP</title>
+      <link href="/C/parallel/openMP/"/>
+      <url>/C/parallel/openMP/</url>
+      
+        <content type="html"><![CDATA[<h3 id="openMP"><a href="#openMP" class="headerlink" title="openMP"></a>openMP</h3><p><strong>编译指导语句格式：</strong><br><code>#pragma omp directive_name [clause...]</code></p><p><code>#pragma omp</code>所有OpenMP语句的前缀.<br><code>directive_name</code>指导指令, 指导编译器进行并行化, 相当于函数名了.<br><code>[clause, ...]</code>子句, 用来控制具体行为&#96;,任选无序.</p><p>语句的作用范围:</p><p>在它后边跟着的<code>代码块</code>, 由<code>&#123;&#125;</code>包围着的</p><p><strong>创建并行区域指令:</strong></p><p><code>#pragma opm parallel [clause,...]</code></p><p>创建一组线程, 创建的线程包括主线程, 编号为0, 其余线程编号递增.</p><p>设置并行区域的线程数:</p><ul><li><p><code>num_threads(count)</code><strong>子句</strong></p><p><code># pragma omp parallel num_threads (thread_count)</code></p></li><li><p><code>omp_set_num_threads (count)</code>函数</p><p>在并行区域前调用此函数可以设定线程的个数</p></li><li><p>计算机环境变量<code>OMP_NUM_THREADS</code></p></li><li><p>默认线程数: 计算机逻辑CPU的个数(核数)</p></li></ul><p>并行区域变量的作用域:</p><p><code>共享作用域</code>与<code>私有作用域</code>.</p><ul><li><code>private(list)</code>: 将一个或多个变量设为线程的私有变量, 没有做初始化.</li><li><code>firstprivate(list)</code>: 私有变量, 将变量的值按串行变量的值做初始化.</li><li><code>lastprivate(list)</code>: 对私有变量的终结操作, 将并行变量的值赋回串行变量.</li><li><code>share(list)</code>: 将变量声明为共享变量.</li><li><code>reuction(&lt;operator&gt; : &lt;variable list&gt;)</code>: 创建临时变量<code>&lt;variable list&gt;</code>, 在并行区域结束之后将所有变量合并, <code>operator</code>约束变量所进行的计算操作.</li><li><code>default(share|none|private)</code>: 设定串行变量在并行中的默认属性. <code>none</code>时每个串行变量都要指定在并行中的属性. 默认属性是<code>share</code></li></ul><p>所有<code>list</code>中的变量是要在串行程序中先前声明过的</p><p><strong>临界区指令:</strong></p><p><code>#pragma omp critical [(name)]</code></p><p><code>name</code>指示临界区的名字, 创建临界区.</p><p><code>#pragma omp atomic</code></p><p>原子操作的锁, 只能锁一个简单的运算操作,如<code>x++;</code>.</p><p><strong>循环调度指令:</strong></p><p><code> #pragma omp for [clause...]</code></p><p>将其后面的<code>for</code>循环多线程运行, 要在<code>parallel</code>之后才能使用, 使用<code>parallel</code>创建的线程来将挨着的<code>for</code>循环多线程运行.</p><p><code>schedule</code>子句:</p><p><code>schedule(type [,size])</code><br><code>type</code>: <code>static</code>迭代在循环前分配给线程. <code>dynamic</code>&#x2F;<code>guide</code>: 迭代在循环执行是分配给线程. <code>runtime</code>: 调度在运行是决定.<br><code>size</code>系统轮转分配<code>size</code>个迭代给每个线程. <code>size</code>默认<code>n/thread_size</code>.</p><p><strong>任务分配指令:</strong></p><p><code>#pragma opm sections [clause...]</code> or <code>#pragma opm section [clause...]</code></p><p><code>section</code>一次占用一个线程, 包括在<code>sections</code>中, 也是需要<code>parallel</code>提前创建线程. <code>sections</code>与<code>section</code>要一起使用.</p><p><code>#pragma opm single [clause...]</code></p><p>后面的代码只使用一个进程来执行.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> parallel </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MPI</title>
+      <link href="/C/parallel/MPI%E5%B9%B6%E8%A1%8C%E8%AE%BE%E8%AE%A1/"/>
+      <url>/C/parallel/MPI%E5%B9%B6%E8%A1%8C%E8%AE%BE%E8%AE%A1/</url>
+      
+        <content type="html"><![CDATA[<h3 id="MPI并行设计"><a href="#MPI并行设计" class="headerlink" title="MPI并行设计"></a>MPI并行设计</h3><p>利用MPI来进行进程间的同步</p><h4 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h4><ul><li><p><code>MPI_init</code>: 根据<code>main</code>函数的参数对<code>MPI</code>进行初始化</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MPI_init(</span><br><span class="line"><span class="type">int</span>* argc_p ,--&gt; main函数中args参数</span><br><span class="line"><span class="type">char</span>*** argv_p --&gt; main函数中argv参数</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li><li><p><code>MPI_Comm_size</code>: <code>MPI</code>创建的进程数</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MPI_Comm_size(</span><br><span class="line">    MPI_Comm comm , --&gt;通信子,表示全部的进程,一般为MPI_COMM_WORLD</span><br><span class="line">    _out_ <span class="type">int</span>* comm_sz_p  --&gt;进程的数量</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li><li><p><code>MPI_Comm_rank</code>: 当前的进程编号</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MPI_Comm_rank(</span><br><span class="line">MPI_Comm comm, </span><br><span class="line">    _out_ <span class="type">int</span>* my_rank_p --&gt;表示当前的进程的编号</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li><li><p><code>MPI_Send</code>: 将消息传递到其他进程</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MPI_Send(</span><br><span class="line">    <span class="type">void</span>* msg_buf_p, --&gt; 指向传递消息的指针</span><br><span class="line">    <span class="type">int</span> msg_sz,      --&gt; 表示消息数量</span><br><span class="line">    <span class="type">int</span> msg_type,    --&gt; 表示消息的种类</span><br><span class="line">    <span class="type">int</span> dest,        --&gt; 传递消息的目的进程</span><br><span class="line">    <span class="type">int</span> tag,         --&gt; 消息的标签, 有相同的标签才能接受消息</span><br><span class="line">    MPI_Comm comm</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li><li><p><code>MPI_Recv</code>: 接受其他进程传来的消息</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">MPI_Rect(</span><br><span class="line">_out_ <span class="type">void</span>* msg_buf_p, --&gt; 指向接受消息的指针</span><br><span class="line">    <span class="type">int</span> msg_sz,      --&gt; 表示消息数量</span><br><span class="line">    <span class="type">int</span> msg_type,    --&gt; 表示消息的种类</span><br><span class="line">    <span class="type">int</span> source,      --&gt; 传递消息的来源进程 如果任意来源:MPI_ANY_SOURSE</span><br><span class="line">    <span class="type">int</span> tag,         --&gt; 消息的标签, 有相同的标签才能接受消息 如果任意tag:MPI_ANY_TAG</span><br><span class="line">    MPI_Comm comm,</span><br><span class="line">    _out_ MPI_Status* status_p --&gt; 记录消息相关的信息,不想记录: MPI_STATUS_IGNORE</span><br><span class="line">)</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> MPI_TAG;</span><br><span class="line">    <span class="type">int</span> MPI_SOURCE;</span><br><span class="line">    <span class="type">int</span> MPI_ERROR;</span><br><span class="line">&#125;MPI_Status</span><br></pre></td></tr></table></figure></li><li><p><code>MPI_Finalize</code>: 将<code>MPI</code>使用的资源空间释放</p><p><code>MPI_Finalize(void)</code></p></li><li><p><code>MPI_GET_count</code>: 接受的数据的个数</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MPI_GET_count(</span><br><span class="line">MPI_Status* status_p,</span><br><span class="line">    <span class="type">int</span> msg_type,</span><br><span class="line">    _out_ <span class="type">int</span>* count    --&gt; 数据的数量</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li><li><p><code>MPI_Reuce</code>:  多对一的通信</p></li><li><p><code>MPI_Allreduce</code>:</p></li><li><p><code>MPI_Bcast</code>: 一对多的通信相同信息</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MPI_Bcast(</span><br><span class="line">    <span class="type">void</span> *msg_buf_p,</span><br><span class="line">    <span class="type">int</span> msg_sz,</span><br><span class="line">    <span class="type">int</span> msg_type,</span><br><span class="line">    <span class="type">int</span> source,</span><br><span class="line">    MPI_Comm comm</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li><li><p><code>MPI_Scatter</code>: 一对多散播不同信息</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> parallel </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>pthread</title>
+      <link href="/C/parallel/pthread/"/>
+      <url>/C/parallel/pthread/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Pthread"><a href="#Pthread" class="headerlink" title="Pthread"></a>Pthread</h3><p>创建多个进程来实现并发</p><h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>头文件:<code>pthread.h</code></p><p><strong>线程操作</strong>: </p><p>线程的创建:</p><ul><li><p><code>pthread_create</code>: 创建线程</p><p><code>int pthread_create(pthread_t* thread_p, const pthread_attr_t* attr_p, void* (*start_routine)(void *), void* arg_p)</code></p><p><code>thread_p</code>是线程标识符, 由此函数调用后赋予线程的编号, <code>attr_p</code>表示线程的属性, <code>NULL</code>表示默认属性, <code>start_routine</code>线程开始运行的函数, <code>arg</code>是<code>start_routine</code>的参数.</p></li></ul><p>线程的阻塞:</p><ul><li><p><code>pthread_join</code>: 阻塞线程</p><p><code>int pthrea_join(pthrea_t thread, void** ret_val_p)</code></p><p><code>thread</code>调用函数的线程会等待<code>thread</code>线程结束之后才运行.</p></li><li><p><code>pthread_detach</code>: 将线程设为<code>detached</code></p></li><li><p><code>pthread_attr_setdetachstate</code>:</p></li><li><p><code>pthread_attr_getdetachstate</code>:</p></li></ul><p>线程的结束:</p><ul><li><p><code>pthread_exit</code>: 结束线程并释放资源</p><p><code>void pthread_exit(void* retval)</code></p><p><code>retval</code>由函数赋值表示函数退出的状态</p></li><li><p><code>pthread_cancel</code>: 结束其他线程</p><p><code>int pthread_canel(phtread_t thread)</code></p><p><code>thread</code>表示同一进程的线程的编号, 结束此进程. 成功返回0, 失败返回错误编号.</p></li></ul><p>堆栈管理(<code>Stack Managemenrt</code>):</p><p><code>POSIX</code>标准没有规定一个线程的堆栈大小。安全可移植的程序不会依赖于具体实现默认的堆栈限制，而是显式地调用<code>pthread_attr_setstacksize</code>来分配足够的堆栈空间</p><ul><li><code>pthread_attr_getstacksize</code></li><li><code>pthread_attr_setstacksize</code></li><li><code>pthread_attr_getstacksize</code></li><li><code>pthread_attr_setstackaddr</code></li></ul><p>其他: </p><ul><li><code>pthread_self</code>: 返回<code>threadid</code></li><li><code>pthread_equal</code>: 比较两个线程的ID, 不相同返回0, 相同返回非零.</li></ul><p><strong>互斥锁(<code>Mutex</code>):</strong></p><p><code>Mutex</code>常来用来保护共享资源, 防止多个线程同时更新一个数据.</p><p>使用互斥锁:</p><ol><li>创建一个互斥锁, 即声明一个<code>pthread_mutex_t</code>类型数据, 并初始化.</li><li>多个线程尝试访问互斥锁, 最终只有一个线程锁定互斥锁, 使用完后释放.</li><li>最后调用<code>pthread_mutex_destory</code>销毁互斥锁.</li></ol><p>互斥锁初始化: 互斥锁只有在初始化之后才能使用.</p><ul><li><p>常量赋值的方法: </p><p><code>pthread_mutex_t mymutex = PTHREAD_MUTEX_INITIALIZER;</code></p><p><code>PTHREAD_MUTEX_INITIALIZER</code>是预定义的一个常量.</p></li><li><p><code>pthread_mutex_init</code></p></li></ul><p>互斥锁销毁:</p><ul><li><code>pthread_mutex_destory</code></li></ul><p>互斥锁锁定与解锁:</p><ul><li><code>pthread_mutex_lock</code></li><li><code>pthread_mutex_trylock</code></li><li><code>pthread_mutex_unlock</code></li></ul><p><strong>条件变量</strong>:</p><p>互斥锁只有两种状态, 限制了它的用途. 条件变量允许线程在阻塞是等待另一个线程发送的信号, 当收到信号后, 阻塞的线程被唤醒并试图锁定与之相关的互斥锁. 条件变量与互斥锁结合使用.</p><p>条件变量的声明与初始化</p><ul><li><p>常量赋值的方法:</p><p><code>pthread_cond_t myconvar = PTHREAD_COND_INITIALIZER;</code></p></li><li><p><code>pthread_cond_init</code></p></li></ul><p>条件变量销毁:</p><ul><li><code>pthread_cond_destory</code></li></ul><p>相关函数:</p><ul><li><code>pthread_cond_wait</code>: 阻塞调用它的线程, 直到收到某个信号.</li><li><code>pthread_cond_signal</code></li><li><code>pthread_cond_broadcast</code></li></ul><p><strong>信号量<code>semaphore</code></strong></p><p>头文件: <code>semaphore.h</code></p><p>信号量初始化:</p><ul><li><p><code>sem_init</code></p><p><code>int sem_init(sem_t * sem, int pshared, unsigned int value)</code></p><p><code>sem</code>信号量对象, <code>pshare</code>是否在进程中共享, 0为线程共享, 非零为进程共享, <code>value</code>信号量的初值.</p></li></ul><p>信号量销毁: </p><ul><li><p><code>sem_destory</code></p><p><code>int sem_detory(sem_t *sem)</code></p><p>销毁前信号量必须初始化</p></li></ul><p>P&#x2F;V操作:</p><ul><li><p><code>sem_wait</code>: P操作</p><p><code>int sem_wait(sem_t *sem)</code></p><p>将信号量减一, 如果信号量小于0, 将线程阻塞</p></li><li><p><code>sem_post</code>: V操作</p><p>将信号量加一, 如果信号量大于0, 唤醒线程.</p></li></ul><h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><ul><li><p><code>pthread_attr_t</code>: 表示线程的属性, 是一个结构体变量.</p><p><code>jionable</code>(可结合的)和<code>detatched</code>(分离的):</p><p><code>jionable</code>: 线程可以被其他线程收回资源和杀死. 在被回收之前它的资源是不会释放的(如栈).</p><p><code>detached</code>: 线程在结束后自动释放所有资源.</p><p><code>joinable</code>线程释放资源要通过其他进程调用<code>pthread_join</code>函数来释放资源</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> parallel </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>pointer</title>
+      <link href="/C/pointer/"/>
+      <url>/C/pointer/</url>
+      
+        <content type="html"><![CDATA[<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><h4 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h4><p><code>type (*func_ptr) (type1, type2)</code></p><p><code>type</code>函数的返回值, <code>func_ptr</code>函数名, <code>type1, type2</code>函数的参数</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> base </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GCC</title>
+      <link href="/C/GCC/"/>
+      <url>/C/GCC/</url>
+      
+        <content type="html"><![CDATA[<h4 id="GCC命令"><a href="#GCC命令" class="headerlink" title="GCC命令"></a>GCC命令</h4><p><em>GCC ( GNU Compile Collection )</em> : 是GUN工具链的重要组成部分, 原为<em>gcc(GUN C Compiler)<em>只能处理C语言, 现在通过不同的前端模块可以支持, 包括</em>Java, Fortran, Go</em>等不同语言. </p><p>GCC支持多种硬件开发平台, 还能进行跨平台交叉编译. 此外，GCC是按模块化设计的, 可以加入新语言和新CPU架构的支持. </p><p><em>gcc(GUN C Compiler)</em>: C语言编译器</p><p><em>g++(GUN C++ Compiler):</em> C++语言编译器</p><h5 id="gcc编译过程"><a href="#gcc编译过程" class="headerlink" title="gcc编译过程"></a>gcc编译过程</h5><p><img src="/../../pic/gcc_compiling_process.png" class="lazyload" data-srcset="/../../pic/gcc_compiling_process.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="gcc_compiling_process"></p><ol><li><p>预处理(Pre-Processing):</p><p>过程中展开宏定义(define), 展开头文件(.h), 对条件进行编译(ifdef), 删除所有注释(&#x2F;&#x2F;).</p><p>用<code>-E</code>参数, 建<code>.c</code>文件转换为<code>.i</code>文件. </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -E hello.c -o hello.i</span><br></pre></td></tr></table></figure><blockquote><p>这个时候不会检查代码的语法, 所以有错误也不会报错</p></blockquote></li><li><p>编译: </p><p>检查语法是否有错误, 用<code>-S</code>参数将<code>.i</code>文件转换为<code>.s</code>汇编文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -S hello.i -o hello.s</span><br><span class="line">gcc -S hello.c -o hello.s</span><br></pre></td></tr></table></figure></li><li><p>汇编:</p><p>将汇编文件<code>.s</code>生成目标文件(二进制文件), 用<code>-c</code>参数将<code>.s</code>文本代码文件变成了<code>.o</code>二进制代码文件.</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c hello.s -o hello.o</span><br><span class="line">gcc -c hello.c -o hello.o</span><br></pre></td></tr></table></figure></li><li><p>链接:</p><p>链接的过程是找到依赖的库文件, 将目标文件链接位可执行文件, 默认无参数就是直接生成可执行文件.</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc hello.o -o hello</span><br><span class="line">gcc hello.c -o hello</span><br></pre></td></tr></table></figure></li></ol><h5 id="gcc编译参数"><a href="#gcc编译参数" class="headerlink" title="gcc编译参数:"></a>gcc编译参数:</h5><p><code>-E</code>: 仅执行预处理，不进行编译、汇编和链接. <code>.i</code>文件.</p><p><code>-S</code>: 执行编译后停止，不进行汇编和链接.<code>.s</code>文件.</p><p><code>-c</code>: 编译程序，但不链接成为可执行文件. <code>.o</code>文件.</p><p><code>-o</code>: 指定生成文件的名字.</p><p><code>-O/-O1/-O2/-O3</code>: 优化代码, 减少代码体积, 提高代码效率.</p><p><code>-O0</code>: 关闭代码优化.</p><p><code>-l[lib]</code>: 指定程序要链接的库, <code>lib</code>为库名.</p><p><code>-L[dir]</code>: 指定库文件的所在路径, <code>dir</code>为路径.</p><p><code>-I</code>[dir]: 指定头文件的路径, <code>dir</code>为路径.</p><p><code>-D</code>: 预定义宏</p><p><code>-w</code>: 不输出任何警告信息.</p><p><code>-Wall</code>: 开启所有警告选项.</p><p><code>-g</code>: 生成调试信息, 方便<code>gdb</code>调试.</p><p><code>-Werror</code>: 将所有的警告视为错误, 在所有产生警告的地方停止编译.</p><p><code>...</code>(还有与静态库, 动态库有关的编译选项)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> base </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>文件操作</title>
+      <link href="/C/file/"/>
+      <url>/C/file/</url>
+      
+        <content type="html"><![CDATA[<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><p>文本模式与二进制模式:<br>二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同<br>文本模式:  在<code>windows</code>上会预处理, 读出时将<code>\r\n</code>转化为<code>\n</code>, 写入时将<code>\n</code>转化为<code>\r\n</code>, <code>linux</code>不会预处理.</p><p>标准文件: 将<code>标准I/O</code>抽象为<code>文件</code><br><code>标准输入(standard input)</code>: <code>getchar</code>, <code>scanf</code>. 指向标准输入设备的文件指针，通常是键盘<br><code>标准输出(standard output)</code>: <code>putchar</code>, <code>puts</code>, <code>printf</code>. 指向标准输出设备的文件指针，通常是屏幕<br><code>标准错误(standard error output)</code>: 独立于标准输出的一种输出. 指向标准输出设备的文件指针，通常是输出</p><p>指向标准文件的指针:<br><code>标准输入</code>: <code>stdin</code><br><code>标准输出</code>: <code>stdout</code><br><code>标准错误</code>: <code>stderr</code></p><h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>头文件: <code>stdio.h</code></p><ul><li><p><code>fopen</code> :打开一个文件, 赋给文件指针.</p><p><code>FIILE* fopen(const char *file, const char* mode)</code></p><p>传入<code>文件路径</code>(支持相对与绝对路径), 返回一个<code>指向文件头的文件指针</code>. 当无文件时, 返回<code>NULL</code>.</p><p><img src="/../../pic/fopen_mode.png" class="lazyload" data-srcset="/../../pic/fopen_mode.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="fopen_mode"></p><p><strong>注意</strong>: <strong>在<code>w</code>模式打开文件会直接删除当前文件的所有内容</strong></p></li><li><p><code>fclose</code>: 关闭指定文件.</p><p><code>int fclose(FILE* fp)</code></p><p>当成功关闭返回<code>0</code>, 失败返回<code>EOF</code>.</p></li><li><p><code>getc</code>: 在文件中获得一个字符</p><p><code>int getc(FILE* fp)</code></p><p>传入文件的指针, 返回值为文件的一个字符. 读取字符后会将文件指针的位置向后移一位. 当读取一个字符发现时文件结尾时, 会返回一个值<code>EOF</code>(-1). </p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文件时, while循环的设计方法</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">while</span>((ch = getc(fp) != EOF)&#123;&#125;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">ch = getc(fp);</span><br><span class="line"><span class="keyword">while</span>(ch != EOF)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">ch = getc(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>getc(stdin)</code> &#x3D; <code>getchar()</code></p></li><li><p><code>putc</code>: 往文件中输出一个字符</p><p><code>int putc(char c, FILE* fp)</code></p><p><code>putc(c, stdout)</code> &#x3D; <code>getchar()</code></p></li><li><p><code>fprintf</code>: 将一段文本格式化输出到文件中.</p><p><code>int fprintf(FILE* fp, const char* format, ...)</code></p><p>与<code>printf</code>的用法类似.</p></li><li><p><code>fscanf</code>: 将文件中格式化的文本输入到变量中.</p><p><code>int fscanf(FILE* fp, const char* format, ...)</code></p></li><li><p><code>fgets</code>: 在文件中读取一个字符串.</p><p><code>char* fgets(char* buf, int maxlen, FILE* fp)</code></p><p>传入待输入字符串<code>buf</code>, 最大长度<code>maxlen</code>, 文件指针<code>fp</code>, 当读到<code>\n</code>或<code>文件结尾EOF</code>或到<code>最大长度时</code>会停止读取, 将字符串末尾加上<code>\0</code>. 当读取到<code>\n</code>时, <code>\n</code>会在字符串中. 当读到<code>EOF</code>会返回<code>NULL</code>, 其余时间返回传入地址.</p></li><li><p><code>fputs</code>: 将字符串输入到文件中.</p><p><code>int fputs(char* str, FILE* fp)</code></p></li><li><p><code>fseek</code>: 将文件指针移动到某个位置.</p><p><code>int fseek(FILE* fp, long offset, int origin(mode))</code></p><p>将文件指针移动到<code>origin</code>, 偏移<code>offset</code>位置. 正常返回0, 异常返回-1(超出文件范围)</p><p><img src="/../../pic/fseek_origin.png" class="lazyload" data-srcset="/../../pic/fseek_origin.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="fseek_origin"></p></li><li><p><code>ftell</code>: 返回当前位置.</p><p><code>long ftell(FILE* fp)</code></p><p>返回当前文件指针较文件开头的偏移量.</p></li><li><p><code>fread</code>: 读取二进制数据.</p><p><code>size_t fread(void *ptr, size_t size, size_t num, FILE* fp)</code></p><p>返回值正常是<code>num</code>, 异常小于<code>num</code>.</p></li><li><p><code>fwrite</code>: 写入二进制数据.</p><p><code>size_t fwrite(const void *ptr, size_t size, size_t num, FILE* fp)</code></p><p><code>ptr</code>是待写入数据的地址, <code>size</code>表示待写入数据的大小(字节为单位), <code>num</code>表示写入数据块的数量. 返回值为整形(不定), 正常为<code>num</code>, 错误小于<code>num</code>.</p></li></ul><h4 id="文件读取原理"><a href="#文件读取原理" class="headerlink" title="文件读取原理"></a>文件读取原理</h4><p><code>fopen</code>在打开文件的时候还创建了读&#x2F;写缓冲区, 以及一个包含缓冲区和文件数据的结构, 返回的文件指针指向这个结构. </p><p>调用输入输出函数时, 数据先传入缓冲区, 缓冲区充满后, 将数据调出. </p><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul><li><p>关于<code>二进制文件</code>与<code>文本文件</code>.</p><p><code>文本文件</code>: 一个数据是将数值转换为字符串存入文件中的</p><p><code>二进制文件</code>: 数据直接把数据本身直接存入文件, 应该用<code>fread</code>, <code>fwrite</code>读写.</p><p>例如: 文本数据: int(11) -&gt; “11”, 二进制数据: int(11) -&gt;0x0000000C</p></li><li><p><code>__restrict__</code></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> base </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>PA零散知识</title>
+      <link href="/C/PA/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/"/>
+      <url>/C/PA/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h3 id="PA中零散知识"><a href="#PA中零散知识" class="headerlink" title="PA中零散知识"></a>PA中零散知识</h3><h4 id="C语言相关"><a href="#C语言相关" class="headerlink" title="C语言相关"></a>C语言相关</h4><ol><li><p><code>GCC编译器</code>的<code>语句表达式</code></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AM_INPUT_KEYBRD_T ev = (&#123;</span><br><span class="line">AM_INPUT_KEYBRD_T __io_param; </span><br><span class="line">ioe_read(AM_INPUT_KEYBRD, &amp;__io_param);</span><br><span class="line">__io_param;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>这里利用<code>GCC编译器</code>的<code>语句表达式</code>(<code>Statement Expressions</code>)特性, 允许在表达式内部执行多条语句, 并返回最后一条语句的值.</p></li><li><p>结构体赋值</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*cfg = (AM_GPU_CONFIG_T) &#123;</span><br><span class="line">    .present = <span class="literal">true</span>, .has_accel = <span class="literal">false</span>,</span><br><span class="line">    .width = <span class="number">0</span>, .height = <span class="number">0</span>,</span><br><span class="line">    .vmemsz = <span class="number">0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>给一个结构体赋值, 中间的强制类型转换本来应该是多余的但是在PA中删掉会报错.</p></li><li><p>宏</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> AM_DEVREG(id, reg, perm, ...) \</span></span><br><span class="line"><span class="meta">  enum &#123; AM_##reg = (id) &#125;; \</span></span><br><span class="line"><span class="meta">  typedef struct &#123; __VA_ARGS__; &#125; AM_##reg##_T;</span></span><br><span class="line"></span><br><span class="line">AM_DEVREG( <span class="number">1</span>, UART_CONFIG,  RD, <span class="type">bool</span> present);</span><br><span class="line"><span class="comment">//展开</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> &#123;</span>AM_UART_CONFIG = (<span class="number">1</span>)&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span> <span class="type">bool</span> present; &#125; AM_UART_CONFIG_T;</span><br></pre></td></tr></table></figure><ul><li><p><code>##</code>: 标记粘贴(token-pasting)</p><p>应该是有<code>##</code>处将后边的指代为变量替换, 如果前后都有就替换中间的.</p></li></ul></li><li><p><code>sizeof</code></p><p>对于动态分配的变量的大小, 是实际占用的大小, 还是已经占用的大小.</p><p><code>sizeof</code>是一个运算符, 返回的结果是变量类型本身的大小, 所以对于指针返回的是8</p></li><li><p>函数索引表</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> *lut[<span class="number">128</span>] = &#123;</span><br><span class="line">  [AM_TIMER_CONFIG] = __am_timer_config,  <span class="comment">//`[]`是c语言中数组赋值的方法,`AM_...`应该是枚举值代表序号</span></span><br><span class="line">  [AM_TIMER_RTC   ] = __am_timer_rtc,</span><br><span class="line">  [AM_TIMER_UPTIME] = __am_timer_uptime,</span><br><span class="line">  [AM_INPUT_CONFIG] = __am_input_config,</span><br><span class="line">  [AM_INPUT_KEYBRD] = __am_input_keybrd,</span><br><span class="line">  [AM_GPU_CONFIG  ] = __am_gpu_config,</span><br><span class="line">  [AM_GPU_FBDRAW  ] = __am_gpu_fbdraw,</span><br><span class="line">  [AM_GPU_STATUS  ] = __am_gpu_status,</span><br><span class="line">  [AM_UART_CONFIG ] = __am_uart_config,</span><br><span class="line">  [AM_AUDIO_CONFIG] = __am_audio_config,</span><br><span class="line">  [AM_AUDIO_CTRL  ] = __am_audio_ctrl,</span><br><span class="line">  [AM_AUDIO_STATUS] = __am_audio_status,</span><br><span class="line">  [AM_AUDIO_PLAY  ] = __am_audio_play,</span><br><span class="line">  [AM_DISK_CONFIG ] = __am_disk_config,</span><br><span class="line">  [AM_DISK_STATUS ] = __am_disk_status,</span><br><span class="line">  [AM_DISK_BLKIO  ] = __am_disk_blkio,</span><br><span class="line">  [AM_NET_CONFIG  ] = __am_net_config,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><ul><li>创建了一个无符号指针数组.</li><li>初始化: 使用<code>[索引] = 值</code>的方法, 为数组中指定位置赋值.</li><li><code>索引</code>是用枚举值来表示的, 用来使每个索引具有意义.</li><li>将函数指针赋给变量, 这样就可以通过数组来选择调用不同函数.</li></ul></li><li><p>函数指针</p></li><li><p><code>void</code>指针</p></li><li><p><code>\b</code>: 退格转义字符, 将当前输入光标后退一格, 不会删除先前输出的内容, 只会在当前行回退</p></li><li><p><code>elf文件</code>的结构与解析</p></li><li><p>关于在头文件中<code>&quot;定义&quot;变量</code></p><p><code>static变量</code>: </p><ul><li><p>如果在头文件中<code>&quot;定义&quot;</code>一个未初始化的变量, 编译器会将该<code>&quot;定义&quot;</code>视为<code>声明</code>, 当被<code>include</code>到源文件后, 会为每一个源文件生成一个变量实体.</p></li><li><p>如果直接定义一个变量(有赋值), 头文件中的变量实体会给予多个源文件造成重定义.</p></li></ul><p><code>一般变量</code>:</p><ul><li>都会有重定义的现象</li></ul><p>所以<strong>不要在头文件中定义变量</strong></p></li><li><p><code>asm</code>关键字:</p><p>基本语法: <code>asm(&quot;assembly code&quot;);</code></p><p><code>assembly code</code>汇编代码</p><p>拓展语法: <code>asm volatile(&quot;assembly code&quot; : output : input : clobbers);</code></p><p><code>output</code>: 表示输出, <code>input</code>: 表示输入, <code>clobbers</code>: 告诉编译器参数中的寄存器会被改变.</p><p><code>%0</code>,<code>%1</code>等表示第一个第二个参数, 空的参数不算.</p></li></ol><h4 id="汇编相关"><a href="#汇编相关" class="headerlink" title="汇编相关:"></a>汇编相关:</h4><ol><li><p>riscv32寄存器:</p><p>通用寄存器: 程序员在编程时可以随意使用的寄存器, 寄存器的功能没有提前定义.</p><p><img src="D:\CodeField\C++_Code\learn\pic\riscv32_register.png" class="lazyload" data-srcset="D:\CodeField\C++_Code\learn\pic\riscv32_register.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="riscv32_registers"></p><p>系统寄存器: CSR(control status register): 和处理器模式相关的寄存器, 寄存器的每个bit都提前定义好含义. 必须按照规定操作系统寄存器.</p></li></ol><h4 id="PA相关"><a href="#PA相关" class="headerlink" title="PA相关"></a>PA相关</h4><ol><li><p><code>nemu</code>与<code>abstract machine</code>:</p><ul><li><p><code>nemu</code>: 一款经过简化的全系统模拟器(Emulator)</p><p><code>nemu</code>模拟了出一套完整的计算机硬件, 有: <code>cpu</code>(Controller and ALU), <code>memory</code>, <code>device</code>(Input and Output)</p></li><li><p><code>AM</code>: 将使用计算机的各种需求收集起来, 抽象成的各种<code>API</code></p><p><code>AM</code> &#x3D; <code>TRM</code> + <code>IOE</code> + <code>CTE</code> + <code>VME</code> + <code>MPE</code></p><p><code>运行时环境</code>: 使程序正常运行所要提供的环境, 包括加载, 销毁程序, 以及各种动态链接库等等</p><p>所以<code>AM</code>要完成的任务是完成各种<code>API</code>所使用的函数来调用<code>nemu</code></p></li></ul><p><code>(在NEMU中)实现硬件功能  --&gt; (在AM中)提供运行环境 --&gt; (在APP层)运行程序</code></p></li><li><p>设备访问:</p><p>外界访问设备的API: <code>io_read</code>, <code>io_write</code></p><p>AM对内存访问的封装: <code>inl</code>, <code>outl</code>…</p><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">访存过程:(内存映射)</span><br><span class="line">io_read/io_write --&gt; ioe_read/ioe_write --&gt; inl/outl... --&gt; vaddr_read --&gt;padder_read --&gt; mmio_read --&gt; map_read --&gt; device(callback_func)</span><br><span class="line"></span><br><span class="line">1.ioe_raed通过访问设备的寄存器, 来获得信息.</span><br><span class="line">2.寄存器通过设备的地址来访问内存(inl/outl),具体在第*3*点</span><br><span class="line">3.在内存访问时, 如果在内存内访问内存, 不再内存内访问对应设备</span><br><span class="line">4.使用设备通过对应设备的回调函数</span><br></pre></td></tr></table></figure></li><li><p><code>*(volatile uint32_t *)addr;</code>: 在<code>inl</code>函数中返回值是这个.</p><p>将参数<code>addr</code>强制类型转换为指针, 此时指针的内容为<code>addr</code>, 就能取出指向对应地址空间的值.</p><p>这个指针的取值操作会在指令中体现, 最后调用<code>nemu</code>中内存操作的函数.</p><p>所以是在指令中调用<code>nemu</code>的功能, <code>nemu</code>确实是在模拟出了计算机的硬件.</p></li><li><p>关于显示设备的访问:</p><ul><li>在<code>init_monitor</code>时, 会<code>init_device</code>, 再<code>init_vga</code>, 在初始化<code>vgactl_port_base</code>零号存长和宽, 再映射到<code>maps</code>数组里.初始化<code>vmem</code>, 映射到<code>maps</code>中. 每个寄存器有一个端口地址(<code>addr</code>), 和实际的存储地址(<code>space</code>).</li><li>在<code>video.c</code>中产生<code>color_buf</code>数组, 通过<code>io_write</code>传入设备中调用<code>__am_gpu_fbdraw</code>, 在图像缓冲区中写入数据.</li><li>在每次指令执行完后, 调用<code>device_update</code>, 如果缓冲区改变<code>sync</code>为<code>1</code>, 调用<code>vga_update_screen</code>更新屏幕.</li></ul><p>关于PA中使用的画图函数, 在缓冲区中存下一整个画面, 就像二维数组一样顺序存储, 而我们在程序中每次传入更改的位置<code>x,y</code>与更改的矩形区域长宽<code>w,h</code>, 我每要一一对应到缓存区的正确位置来修改缓存区.</p></li><li><p>什么是操作系统</p><p>操作系统是对计算机中所有资源进行调度分配功能的程序. 对计算机的状态进行控制. </p></li><li><p>关于自陷操作的步骤</p><p>首先调用<code>cte_init</code>将<code>simple_trap</code>设为自陷操作的回调函数, 同时设置<code>mtve</code>为<code>__am_asm_trap</code>. 调用<code>hello_intr</code>函数, 其中<code>while</code>循环一直调用<code>yield</code>函数. <code>yield</code>调用<code>ecall</code>系统调用.</p><p><code>ecall</code>调用: 调用<code>isa_raise_intr</code>函数, 读取异常类型到<code>mcause</code>中, 保存当前pc值到<code>mepc</code>, 并且将pc设置为异常入口值(<code>mtve</code>的值, 即<code>__am_asm_trap</code>), 在<code>__am_asm_trap</code>中先跳转<code>__am_irq_handle</code>处理了异常信息, 调用了回调函数, 再<code>mret</code>.</p><p><code>__am_irq_handle</code>: </p><p><code>mret</code>调用: 将<code>mepc</code>中存的值返回到<code>pc</code>中 . 改变<code>mstatus</code>的状态值. 之后程序按照先前的状态正常运行.</p></li><li><p><code>ABI</code>和<code>API</code></p><p><code>API</code>: <code>Aplication Programming Interface</code>: </p><p>在程序员编写程序时所用到的接口, 包含函数, 结构, 变量等, 通过这些来访问具体的功能实现. 比如说, 在使用库函数时是通过头文件中的函数接口, 只有调用用正确的接口才能正常使用相应的功能.</p><p><code>ABI</code>: <code>Apllication Binary Interface</code>: 机器语言级别的<code>API</code></p><p>一个二进制文件如何组织如何运行. 在编译器编译程序时所用到的接口. 就是如何将高级语言转换为机器语言使其可以运行. 比如当调用一个函数是, 参数是如何传递的, 返回值是如何传递的.</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> PA </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>存储类别</title>
+      <link href="/C/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB/"/>
+      <url>/C/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="C中的储存类别"><a href="#C中的储存类别" class="headerlink" title="C中的储存类别"></a>C中的储存类别</h2><p>关键字: <code>auto、extern、static、register、const、volatile、restricted、_Thread_local、_Atomic</code><br>函数: <code>malloc()、calloc()、free()</code></p><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>对象(object): 程序中的变量全部都存在内存中, 将每个变量所占有一定的内存都称为一个对象</p><p>标识符(identifier): 将变量名看作变量对象的标识符, 用于指定(designate)对象</p><p>左值(lvalue): 变量名与一些符号结合后可以指定对象的表达式叫左值, 如<code>*p</code>, <code>p[n]</code></p><p>块: 花括号的开始与结束(for()中的变量是在块中的声明的变量, while()中的变量不是块中的变量)<br>&emsp;所以在for和while中可以定义与外部变量一样的同名变量, 为循环中的局部变量<br>&emsp;块: 循环、分支结构、函数体</p><p><em><strong>链接</strong></em>:</p><ul><li>外部链接: 外部链接变量可以在多文件程序中使用</li><li>内部链接: 内部链接变量只能在一个翻译单元中使用(一个源文件以及其包含的头文件)</li><li>无链接: 变量是其定义它们的块、函数或原型私有</li></ul><p><em><strong>作用域</strong></em>(scope): 表示了程序的那些部分可以使用此对象</p><ul><li>块作用域: 只能在当前代码块中使用    –&gt;局部变量</li><li>文件作用域: 内部链接的文件或外部链接的文件的作用域, 只能在当前翻译单元中使用(当前源文件以及其包含的头文件)    –&gt; 全局变量</li><li>全局作用域: 外部链接的文件的作用域, 能在所有文件中使用</li><li>函数作用域: 仅用于goto语句的标签, 用于区分不同块中同名标签</li><li>函数原型作用域: 用于函数原型中的形参名, 范围是从形参定义处到原型声明结束</li></ul><p><em><strong>储存期</strong></em>(storage duration): 生命周期, 指对象在内存中保留了多久的时间</p><ul><li>静态储存期: 被声明后, 在程序运行期间一直存在</li><li>线程储存期: 用于并发程序设计, 被声明后, 在线程运行期间一直存在(以关键字<code>_Thread_local</code>声明的对象时, 每个线程都获得该变量的私有备份)</li><li>自动储存期: 块的开始与结束(花括号的开始与结束)</li><li>动态分配储存期:</li></ul><h4 id="auto自动变量"><a href="#auto自动变量" class="headerlink" title="auto自动变量"></a>auto自动变量</h4><p>块内部声明:<code>auto type name;</code><br>auto变量具有自动存储期、块作用域及无链接.<br>默认情况下, 声明在块中或函数头中的任何变量都属于自动储存类型. <code>auto</code>更多时有意告诉这个变量是auto变量不要改变.<br><code>auto</code>关键字与C++中的用法完全不同!!!!<br><strong>自动变量不会初始化!!</strong></p><h4 id="register寄存器变量"><a href="#register寄存器变量" class="headerlink" title="register寄存器变量"></a>register寄存器变量</h4><p>块内部声明:<code>register type name;</code><br>寄存器变量请求编译器将该变量储存在寄存器中, 所以编译器会根据寄存器或最快可用内存数量衡量你的请求,或直接忽略.<br>因为寄存器变量是直接存在寄存器中, 所以是无法进行取址操作的, 即使它没有存在寄存器中.<br>因为寄存器大小有限, 所以大一些的数据类型不能声明为寄存器变量.<br>寄存器变量的其他特性与自动变量类似.</p><h4 id="static静态变量"><a href="#static静态变量" class="headerlink" title="static静态变量"></a>static静态变量</h4><ol><li><p>块作用域的静态变量<br> 再块内部声明:<code>static type name;</code><br> 指函数函数体内部声明的静态变量<br> 是具有静态储存期、块作用域的局部变量<br> 只会在第一次函数调用时分配内存, 函数结束后不会释放内存, 下一次调用函数后会继续沿用上一次的值, 不能做函数的形参<br> 默认会初始化为0</p></li><li><p>外部链接的静态变量<br>在块的外部声明:<code>type name</code> -&gt;内部链接<br>在块外声明, 引入外部变量: <code>extern type name;</code> (<code>extren</code>关键字就是指让编译器寻找当前作用域之外的变量)-&gt;外部链接<br>具有文件作用域、外部链接、和静态存储期.<br>不能被其他变量赋值来初始化, 初始化默认为0</p></li><li><p>内部链接的静态变量<br>在块外声明: <code>static type name;</code><br>具有文件作用域、内部链接、静态储存期。</p></li></ol><h4 id="外部函数"><a href="#外部函数" class="headerlink" title="外部函数"></a>外部函数</h4><p>  <code>extern type func();</code> or <code>type func();</code><br>  默认无关键字修饰的函数为外部函数, 外部函数可以被其它文件的函数访问, 只要被提前声明.<br>  通常做法: <code>extern</code> 用来提示用的是别的文件的函数</p><h4 id="内部函数"><a href="#内部函数" class="headerlink" title="内部函数"></a>内部函数</h4><p>  <code>static type func()</code><br>  只能被当前文件访问</p><h4 id="inline内联函数"><a href="#inline内联函数" class="headerlink" title="inline内联函数"></a>inline内联函数</h4><ol><li>在c++中的新特性(面向对象)<ul><li>类的static成员<br> 储存在全局数据区,在程序开始时分配空间.<br> 是所有类成员共享的变量<ul><li>使用<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> _s;<span class="comment">//在类里面声明</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> A::_s=<span class="number">0</span>;   <span class="comment">//定义与初始化</span></span><br></pre></td></tr></table></figure></li></ul></li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> base </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>位操作</title>
+      <link href="/C/%E4%BD%8D%E6%93%8D%E4%BD%9C/"/>
+      <url>/C/%E4%BD%8D%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[<h3 id="位操作"><a href="#位操作" class="headerlink" title="位操作"></a>位操作</h3><ol><li><p>按位运算符</p><ul><li>&amp; 按位与运算</li><li>| 按位或运算</li><li>~ 按位取反运算 -&gt; 一元运算符</li><li>^ 按位异或运算</li></ul><p><strong>掩码:</strong><br> 按位运算符通常用于掩码<br> 掩码是指的是一些设置为开(1)或关(0)的位组合<br> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MASK=<span class="number">2</span>; <span class="comment">//设定掩码为2, 即00000010</span></span><br><span class="line">flag = flag &amp; MASK;</span><br><span class="line"><span class="comment">//则只有MASK为1的为才能看见, 所以叫掩码</span></span><br></pre></td></tr></table></figure><br><strong>打开位:(设置位)</strong><br> 有时候需要打开一个值中的特定位, 同时保持其它位不变</p> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MASK = <span class="number">00011110</span>;</span><br><span class="line">flag = <span class="number">10010001</span>;</span><br><span class="line">flag |= MASK; -&gt; flag=<span class="number">10011111</span>;</span><br><span class="line"><span class="comment">//将我们flag中特定的位设定为1, 其它位不变</span></span><br></pre></td></tr></table></figure><p> <strong>关闭位:(清空位)</strong><br> 在不影响其他位的情况下, 关闭指定位<br> <code>flag &amp;= ~MASK;</code></p><p> <strong>切换位:</strong><br>   指打开已经关闭的位, 关闭已经打开的位<br>   <code>flag ^= MASK;</code>与1相对应的位翻转<br> <strong>检查位的值:</strong><br> 判断某一位是否设为1<br>  <code>if((flag &amp; MASK) == MASK)</code><br>  判断某一位是否设为0<br>  <code>if((flag &amp; MASK) != MASK)</code></p></li><li><p>移位运算符</p></li></ol><ul><li><code>&lt;&lt;</code> 左移<br>  将运算对象每一位向左移动特定位数, 其余补0   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对自己的操作</span></span><br><span class="line">flag = <span class="number">11111111</span>;</span><br><span class="line">flag &lt;&lt;= <span class="number">2</span>; -&gt; flag = <span class="number">11111100</span>;</span><br><span class="line"><span class="comment">//赋值操作</span></span><br><span class="line">flag1 = <span class="number">11111111</span>;</span><br><span class="line">flag2 = flag1 &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="comment">//flag1的值不变, 赋值给flag2</span></span><br></pre></td></tr></table></figure></li><li><code>&gt;&gt;</code> 右移(同上)  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将int转化为二进制</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">itobt</span><span class="params">(<span class="type">char</span>* str, <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> len=<span class="keyword">sizeof</span>(n)*<span class="number">8</span>+<span class="number">1</span>;</span><br><span class="line">  <span class="type">char</span> s[len];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=len<span class="number">-2</span>; i--; n&gt;&gt;=<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    s[i] = (<span class="number">01</span> &amp; n)+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  s[len<span class="number">-1</span>]=<span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ol start="3"><li>位字段(bit field)<br>位字段是一个signed int 或 unsigned int类型中的一组相邻的位(C99和C11新增了_Bool类型的位字段)<br>位字段通过一个结构声明来建立, 该结构声明位每个字段提供标签, 并确定该字段的宽度<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> f : <span class="number">1</span>;<span class="comment">//为低位</span></span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> s : <span class="number">1</span>;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> t : <span class="number">1</span>;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> l : <span class="number">1</span>;</span><br><span class="line">&#125;prnt;</span><br><span class="line"><span class="comment">//创建了4个1位字段, prnt大小为4字节, 但只利用其中4位</span></span><br><span class="line"><span class="comment">//可以用struct的方法来赋值</span></span><br><span class="line">prnt.f = <span class="number">0</span>; <span class="comment">//因为f只占1位, 所以只能被赋值1或0</span></span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> base </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git</title>
+      <link href="/tools/Git/"/>
+      <url>/tools/Git/</url>
+      
+        <content type="html"><![CDATA[<h3 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h3><p><a href="https://www.runoob.com/git/git-tutorial.html">Git教程</a>  (菜鸟教程)</p><h4 id="结构介绍"><a href="#结构介绍" class="headerlink" title="结构介绍"></a>结构介绍</h4><p>git的版本管理结构是一个有向图，每个版本是图中的一个节点，每个节点间用有向边来连接。<br>主分支master: 是项目的主要方向.<br>从主分支可以有多个branch: 项目要同步开发,或实现不同功能要有分支,分支可以最终并入主线<br>git编辑中有一个head指针: 可以指向任意节点,将项目转换成此节点的状态</p><p>git工作区,暂存区,版本库:</p><ul><li><p>版本库: 所有节点的内容存在里面(在&#x2F;.git中)</p></li><li><p>工作区: 当前的主文件夹中的内容.</p></li><li><p>暂存区: 与当前版本的内容相同,每次git add后将暂存区的文件修改,commit将暂存区变为新版本.(在.&#x2F;git&#x2F;index)中</p></li></ul><p><a href="https://www.runoob.com/git/git-workspace-index-repo.html">工作区, 暂存区, 版本库的关系</a> (看图)</p><h4 id="Git基本指令："><a href="#Git基本指令：" class="headerlink" title="Git基本指令："></a>Git基本指令：</h4><p><a href="http://onlywei.github.io/explain-git-with-d3/">git操作图示网站</a><br><code>git config [-参数]</code>: 编辑git的配置文件</p><ul><li><p><code>-e</code>: 编辑git配置文件(编辑器)</p></li><li><p><code>--global</code>: 将编辑应用到全局</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">编辑用户的信息(直接):</span><br><span class="line">git config --global user.name &quot;runoob&quot;</span><br><span class="line">git config --global user.email test@runoob.com </span><br></pre></td></tr></table></figure></li></ul><p><code>git init</code>: 初始化仓库</p><p><code>git clone &lt;仓库&gt; &lt;复制路径&gt;</code>: 拷贝一个远程仓库</p><p><code>git add + [file1] [file2]...</code> : 将文件添加到暂存区</p><ol><li>参数可为文件夹</li><li>参数为’.’ : 提交工作区所有文件</li></ol><p><code>git commit</code>: 提交当前版本作为一个新的节点</p><ul><li><code>-a</code>: 可以不进行add操作就提交版本</li><li><code>-m</code> + “comment”: 不打开编辑器直接写版本信息</li></ul><p><code>git status</code>:打印当前工作区状态: 1.当前分支 2.当前分支与远程分支的关系 3.add没commit的文件 4.未add的文件</p><ul><li><code>-s</code>: 简短输出</li></ul><p><code>git branch [-参数] + name</code>: 产生一个新分支 </p><ul><li><code>无参数</code>: 打印当前所有分支</li><li><code>-d</code>: 删除该名字的分支</li></ul><p><code>git checkout [-参数] + name</code>: 将head指针指向名为name的节点</p><ul><li><code>-b</code>: 创建一个新节点并将head节点移动到新节点</li><li><code>-</code>: 快速回到上一个访问的分支</li><li><code>-- &lt;file&gt;</code> : 撤销该文件的所有修改</li><li><code>.</code>: 指向当前节点, 撤销工作区的所有修改</li></ul><p><code>git diff</code>:查看尚未缓存的改动(与上一节点(可以称为当前版本))</p><ul><li><code>--cache</code>: 查看已缓存的改动(与上一节点)</li><li><code>[file]</code>: 显示与缓存区的差异(与工作区)</li><li><code>[branch1] [branch2]</code>: 比较两节点的差异</li></ul><p><code>git reset [--soft | --mixed | --hard] HEAD^</code>: 回退版本(<code>mixed</code>为默认) (<code>HEAD</code>表示当前版本 <code>HAED^</code>表示上一版本 <code>HEAD^^</code>同理 也可以用<code>HEAD~0</code> <code>HEAD~1</code> 来表示)</p><ul><li><code>reset HEAD</code>: 可以用来清除已缓存的内容</li><li><code>reset HEAD^ [file]</code>: 回退单一文件</li><li><code>--soft</code>: 只是想撤回commit操作,不改变工作区与暂存区的文件</li><li><code>--mixed</code>: 撤回commit操作,删除缓存区,不改变工作区(默认)</li><li><code>--hard</code>: 完全还原到回退版本的文件状态</li></ul><p><code>git revert</code>: 回退到某一版本,但会作为一次新的commit提交</p><ul><li><code>-m</code>: 关于有分支冲突的时候,选择回退那一个</li></ul><p></p><p><code>git rm</code>: 删除文件,可能用普通的rm命令不会删除缓存区的文件所以会有问题<br><code>git mv</code>: 移动文件,重命名<br><code>git merge</code>: 将创建的分支与主分支合并(合并冲突要注意)<br><code>git tag [-参数] [标签] [commit(默认HEAD)]</code>: 给一次commit打上标签(可以用来标示一个重要的阶段)</p><ul><li><code>-a</code>: 在创建带注解的标签(标签时间,标签作者…) #推荐带这个参数</li><li><code>无参数</code>: 查看所有标签</li></ul><p><code>git log [-参数] [commit/branch]</code>: 查看提交记录<br><code>git blame [-参数] &lt;文件路径&gt;</code>: 显示文件中每一行的修改记录<br><code>git fetch [仓库名]</code>: 从远程项目中下载新分支与数据<br><code>git merge [仓库名]/[branch]</code>: 从远程仓库提取数据并尝试合并到当前分支(与fetch命令连用)<br><code>git push [仓库名] [branch]</code>: 将你的分支推送到远程仓库</p><p><code>git remote</code>: 与远程仓库有关的命令</p><ul><li><code>git remote</code>: 查看已经配置的远程仓库.</li><li><code>git remote -v</code>: 查看仓库并显示他们的URL.</li><li><code>git remote add &lt;remote_name&gt; &lt;remote_url&gt;</code>: 添加一个新的仓库.</li><li><code>git remote rename &lt;old_name&gt; &lt;new_name&gt;</code>: 将已经配置的仓库重命名.</li><li><code>git remote remove &lt;remote_name&gt;</code>: 删除指定仓库.</li><li><code>git remote set-url &lt;remote_name&gt; &lt;new_url&gt;</code>: 修改指定仓库的URL.</li><li><code>git remote show &lt;remote_name&gt;</code>: 查看远程仓库的详细信息.</li></ul><p>git的学习到此结束了!!!!![end…]</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>正则表达式</title>
+      <link href="/tools/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+      <url>/tools/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p><strong>正则表达式</strong>: 是用于匹配和操作文本的强大工具<br><a href="https://deerchao.cn/tutorials/regex/regex.htm">https://deerchao.cn/tutorials/regex/regex.htm</a> #教程</p><p><a href="https://regex101.com/">https://regex101.com/</a>      #匹配练习工具</p><p>正则表达式是由普通字符(a-z等)以及特殊字符(元字符)组成的文字模式,格式<code>/pattern/flags</code></p><ul><li><p>普通字符:包括所有大小写字母,所有数字标点符号以及一些其他符号<br><code>[ABC]</code>: 匹配…中所有的字符<br><code>[^ABC]</code>: 匹配[…]中以外的字符<br><code>[A-Z]</code>: A-Z匹配所有大写字母,a-z撇批所有小写字母<br><code>.</code>: 匹配除(\n,\r)外所有字符,相当于[^\n\r]<br><code>[\s\S]</code>: \s匹配所有空白符,\S匹配所有非空白符<br><code>\w</code>: 匹配字母,数字,下划线,相当于[A-Za-z0-9_]<br><code>\d</code>: 匹配数字,相当于[0-9]</p></li><li><p>修饰符: i,g,m,s<br>  <code>g</code>: 查找字符串中所有的匹配项 #&#x2F;haha&#x2F;g 匹配 “nihao haha11haha” 则会匹配到两个haha,不然空格就结束匹配<br>  <code>i</code>: 不区分大小写匹配<br>  <code>m</code>: 多行匹配,使边界字符^和$匹配每一行的开头与结尾,搭配^使g可以多行匹配<br>  <code>s</code>: 使.可以匹配换行符  #&#x2F;haha.&#x2F;s 匹配 “haha\n” 没加s的话匹配不了</p></li><li><p>元字符:<br>  <code>*</code>: 匹配前面一个字符0-n次<br>  <code>+</code>: 匹配前面一个字符1-n次<br>  <code>?</code>: 匹配前面一个字符0或1次<br>  <code>&#123;&#125;</code>: {n}匹配前面一个字符出现n次,{n1,n2}匹配前面一个字符n1-n2次<br>  <code>(ab)+</code>: 匹配ab多次<br>  <code>(str1|str2)</code>: 匹配str1或str2<br>  <code>[]</code>: 匹配中间全部字符<br>  <code>^</code>: 匹配行首<br>  <code>$</code>: 匹配行尾<br>  <code>\b</code>: 标记字符边界(全字匹配)<br>  <code>\s</code>: 匹配空白符(包括\n,\t,\r)<br>  <code>\S</code>: 匹配非空白符<br>  <code>\w</code>: 匹配字母数字下划线<br>  <code>\W</code>: \w以外字符</p></li><li><p>贪婪&#x2F;懒惰匹配<br><code>&lt;.+&gt;</code>: 默认贪婪匹配任意字符 #尽可能匹配更多的字符,这会将所有匹配成一个字符串<br><code>&lt;.+?&gt;</code>: 懒惰匹配任意字符 #这样会将字符一个一个匹配</p></li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>risc-v</title>
+      <link href="/riscV/inst/"/>
+      <url>/riscV/inst/</url>
+      
+        <content type="html"><![CDATA[<h3 id="risc-V-指令结构"><a href="#risc-V-指令结构" class="headerlink" title="risc-V 指令结构"></a>risc-V 指令结构</h3><p>有4种基本结构与2种变体<br>R, I, S, U and J, B</p><p><img src="/../pic/inst_instruction.png" class="lazyload" data-srcset="/../pic/inst_instruction.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="inst_instruction"></p><ul><li>R类型: 用于寄存器之间操作</li><li>U类型: 用于长立即数</li><li>I类型 (load and immediate): 用于短立即数和取数</li><li>S类型 (store): 用于存数</li><li>J类型 (jump): 用于无条件跳转</li><li>B类型 (branch): 用于条件分支</li></ul><p>名词解释:</p><ul><li>rs (source register): 表示源寄存器(图中rs1 和rs2) </li><li>rd (destination register):  表示目标寄存器(<strong>rs与rd在指令的位置是固定的</strong>)</li><li>imm (immdiate): 立即数 (即指令中的参数) 常量</li><li>funct (funct): 表示指令的功能, 一些指令操作码相同, 所以用funct来区分它们</li><li>opcode: 操作指令码</li><li>offset: 偏移量, 一般用来表示地址常量</li><li>sext (sign-extend): <strong>符号拓展</strong>, 将数据给扩充到字的长度 </li><li>n(rs): 表示将rs的值写入相关指令要写入的地方(pc, 内存)  (n表示偏移量, rs表示源寄存器)</li><li>shamt: 在有移位操作时, 将shamt表示移位的位数</li></ul><p>指令详解：</p><ul><li><p>auipc: U型 将pc值处理赋值给寄存器</p><p>​x[rd] &#x3D; pc + sext(imm[31:12] &lt;&lt; 12);</p></li><li><p>addi: I型 加立即数</p><p>​x[rd] &#x3D; x[rs1] + sext(imm);</p><p>mv: 数据传送, 将rs1中的数据复制到rd中去</p><p>​addi rd, rs1, 0</p></li><li><p>jal: J型 跳转并链接 将原来pc的走向存起来, 改变pc的值到要跳转的区域</p><p>​x[rd] &#x3D; pc + 4; pc +&#x3D; sext(imm) &lt;&lt; 1;</p></li><li><p>jalr: I型 寄存器跳转并链接  将原来pc的走向存起来, 改变pc的值到要跳转的区域, 并将地址的最低位清零</p><p>​x[rd] &#x3D; pc + 4; pc &#x3D; (x[rs1] + sext(offset))&amp;~1;</p><p>ret: jalr x0 0(x1)  ( x0表示第一个寄存器, x1表示第二个寄存器, 偏移地址为0)</p></li><li><p>sw: S型 存字 将rs2的最低4字节写入内存</p><p>​M[x[rs1] + sext(offset)] &#x3D; x[rs2] [31:0]</p></li><li><p>lw: I型 取字 从内存中读取4字节存入rd中</p><p>​x[rd] &#x3D; sext( M[x[rs1] + sext(offset)] [31:0] )</p></li><li><p>lui: U型 装入高立即数 将imm符号拓展后左移12位, 将低位置零</p><p>x[rd] &#x3D; sext(immedate[31 : 12]) &lt;&lt; 12)</p></li><li><p>sb: S型 存字节 将rs2的最低字节写入内存</p><p>​M[x[rs1] + sext(offset)] &#x3D; x[rs2] [7:0]</p></li><li><p>sltiu: I型 将rs1与imm比较如果rs1小, 则将rd置为1, 否则为0</p><p>​x[rd] &#x3D; x[rs1] &lt; sext(imm)</p><p>seqz: 等于0时置位</p><p>​sltiu rd, rs1, 1</p></li><li><p>beq: B型 相等时分支, 当两个寄存器的值相等时就跳转</p><p>​if( rs1 &#x3D;&#x3D; rs2)  pc +&#x3D; sext( offset )</p><p>beqz: offset等于0时分支</p><p>​beq rs1, x0</p></li><li><p>blt: B型 小于时分支, 若rs1小于rs2(<strong>补码比较</strong>), 将pc设置位pc+offset</p><p>if(x[rs1] &lt; x[rs2]) pc +&#x3D;sext(offset)</p></li></ul><h3 id="C语言的实现"><a href="#C语言的实现" class="headerlink" title="C语言的实现"></a>C语言的实现</h3><p><code>==</code>: 指令的话, 是将左操作数减去右操作数, 再判断是否为零;</p><p><code>return</code>: </p><ul><li><p>用<code>ret</code>指令来实现, 返回到上一函数, 返回值用<code>a0</code>来表示</p></li><li><p><code>程序结束状态</code>:实质上是<code>main</code>函数的返回麻</p><p> 表示程序结束状态的寄存器是<code>a0</code>, 程序的结束标志是<code>ebreak</code>, 所以正常结束就是在ebreak前面, 将a0的值置为0;</p></li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CSRS</title>
+      <link href="/riscV/CSRS/"/>
+      <url>/riscV/CSRS/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
+      <link href="/test/test/"/>
+      <url>/test/test/</url>
+      
+        <content type="html"><![CDATA[<h2 id="HELLO-WORLD"><a href="#HELLO-WORLD" class="headerlink" title="HELLO WORLD"></a>HELLO WORLD</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> test1 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> test1 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/test/hello-world/"/>
+      <url>/test/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> test </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
