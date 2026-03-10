@@ -42,11 +42,11 @@
 <meta property="og:title" content="位操作">
 <meta property="og:url" content="http://yude11.github.io/post/%E4%BD%8D%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="yude&#39;s blog">
-<meta property="og:description" content="位操作   按位运算符  &amp; 按位与运算 | 按位或运算 ~ 按位取反运算 -&gt; 一元运算符 ^ 按位异或运算  掩码: 按位运算符通常用于掩码 掩码是指的是一些设置为开(1)或关(0)的位组合  123MASK&#x3D;2; &#x2F;&#x2F;设定掩码为2, 即00000010flag &#x3D; flag &amp; MASK;&#x2F;&#x2F;则只有MASK为1的为才能看见, 所以叫掩码 打开位:(设置位) 有时候需要打">
+<meta property="og:description" content="按位运算符  &amp; 按位与运算 | 按位或运算 ~ 按位取反运算 -&gt; 一元运算符 ^ 按位异或运算  掩码: 按位运算符通常用于掩码 掩码是指的是一些设置为开(1)或关(0)的位组合  MASK&#x3D;2; &#x2F;&#x2F;设定掩码为2, 即00000010flag &#x3D; flag &amp; MASK;&#x2F;&#x2F;则只有MASK为1的为才能看见, 所以叫掩码 打开位:(设置位) 有时候需要打开一个值中的特">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-09-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-08T10:52:35.926Z">
+<meta property="article:modified_time" content="2026-03-10T07:08:56.129Z">
 <meta property="article:author" content="yude">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -1122,7 +1122,7 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 .l_header .nav-sub .title {
@@ -1704,7 +1704,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1754,11 +1754,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1332px;
-    left: calc((100% - 1332px) * 0.5);
+    max-width: 1132px;
+    left: calc((100% - 1132px) * 0.5);
   }
 }
-@media screen and (max-width: 1332px) {
+@media screen and (max-width: 1132px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773121406941),
+    lastupdate: new Date(1773132731485),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -1895,7 +1895,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       }
     },
     plugins: {
-      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":true,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
+      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":false,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
       fancybox: {"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.umd.js"},
       
       
@@ -2307,7 +2307,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin end-->
     <!-- front-matter body_begin begin -->
     <!-- front-matter body_begin end -->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto  show" style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2549,7 +2549,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md  article-type-post" id="post" itemscope itemprop="blogPost">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://yude11.github.io/post/位操作/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="yude's blog">
@@ -2610,8 +2610,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h3 id="位操作">位操作</h3>
-<ol>
+    <ol>
 <li>
 <p>按位运算符</p>
 <ul>
@@ -2623,10 +2622,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><strong>掩码:</strong><br>
 按位运算符通常用于掩码<br>
 掩码是指的是一些设置为开(1)或关(0)的位组合</p>
- <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MASK=<span class="number">2</span>; <span class="comment">//设定掩码为2, 即00000010</span></span><br><span class="line">flag = flag &amp; MASK;</span><br><span class="line"><span class="comment">//则只有MASK为1的为才能看见, 所以叫掩码</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MASK=<span class="number">2</span>; <span class="comment">//设定掩码为2, 即00000010</span></span><br><span class="line">flag = flag &amp; MASK;</span><br><span class="line"><span class="comment">//则只有MASK为1的为才能看见, 所以叫掩码</span></span><br></pre></td></tr></table></figure>
 <p><strong>打开位:(设置位)</strong><br>
 有时候需要打开一个值中的特定位, 同时保持其它位不变</p>
- <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MASK = <span class="number">00011110</span>;</span><br><span class="line">flag = <span class="number">10010001</span>;</span><br><span class="line">flag |= MASK; -&gt; flag=<span class="number">10011111</span>;</span><br><span class="line"><span class="comment">//将我们flag中特定的位设定为1, 其它位不变</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MASK = <span class="number">00011110</span>;</span><br><span class="line">flag = <span class="number">10010001</span>;</span><br><span class="line">flag |= MASK; -&gt; flag=<span class="number">10011111</span>;</span><br><span class="line"><span class="comment">//将我们flag中特定的位设定为1, 其它位不变</span></span><br></pre></td></tr></table></figure>
 <p><strong>关闭位:(清空位)</strong><br>
 在不影响其他位的情况下, 关闭指定位<br>
 <code>flag &amp;= ~MASK;</code></p>
@@ -2647,15 +2646,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><code>&lt;&lt;</code> 左移<br>
 将运算对象每一位向左移动特定位数, 其余补0</li>
 </ul>
-   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对自己的操作</span></span><br><span class="line">flag = <span class="number">11111111</span>;</span><br><span class="line">flag &lt;&lt;= <span class="number">2</span>; -&gt; flag = <span class="number">11111100</span>;</span><br><span class="line"><span class="comment">//赋值操作</span></span><br><span class="line">flag1 = <span class="number">11111111</span>;</span><br><span class="line">flag2 = flag1 &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="comment">//flag1的值不变, 赋值给flag2</span></span><br></pre></td></tr></table></figure>
+   <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//对自己的操作</span></span><br><span class="line">flag = <span class="number">11111111</span>;</span><br><span class="line">flag &lt;&lt;= <span class="number">2</span>; -&gt; flag = <span class="number">11111100</span>;</span><br><span class="line"><span class="comment">//赋值操作</span></span><br><span class="line">flag1 = <span class="number">11111111</span>;</span><br><span class="line">flag2 = flag1 &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="comment">//flag1的值不变, 赋值给flag2</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>&gt;&gt;</code> 右移(同上)</li>
 </ul>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将int转化为二进制</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">itobt</span><span class="params">(<span class="type">char</span>* str, <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> len=<span class="keyword">sizeof</span>(n)*<span class="number">8</span>+<span class="number">1</span>;</span><br><span class="line">  <span class="type">char</span> s[len];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=len<span class="number">-2</span>; i--; n&gt;&gt;=<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    s[i] = (<span class="number">01</span> &amp; n)+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  s[len<span class="number">-1</span>]=<span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//将int转化为二进制</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">itobt</span><span class="params">(<span class="type">char</span>* str, <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> len=<span class="keyword">sizeof</span>(n)*<span class="number">8</span>+<span class="number">1</span>;</span><br><span class="line">  <span class="type">char</span> s[len];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=len<span class="number">-2</span>; i--; n&gt;&gt;=<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    s[i] = (<span class="number">01</span> &amp; n)+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  s[len<span class="number">-1</span>]=<span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>位字段(bit field)<br>
 位字段是一个signed int 或 unsigned int类型中的一组相邻的位(C99和C11新增了_Bool类型的位字段)<br>
-位字段通过一个结构声明来建立, 该结构声明位每个字段提供标签, 并确定该字段的宽度<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> f : <span class="number">1</span>;<span class="comment">//为低位</span></span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> s : <span class="number">1</span>;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> t : <span class="number">1</span>;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> l : <span class="number">1</span>;</span><br><span class="line">&#125;prnt;</span><br><span class="line"><span class="comment">//创建了4个1位字段, prnt大小为4字节, 但只利用其中4位</span></span><br><span class="line"><span class="comment">//可以用struct的方法来赋值</span></span><br><span class="line">prnt.f = <span class="number">0</span>; <span class="comment">//因为f只占1位, 所以只能被赋值1或0</span></span><br></pre></td></tr></table></figure></li>
+位字段通过一个结构声明来建立, 该结构声明位每个字段提供标签, 并确定该字段的宽度<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> f : <span class="number">1</span>;<span class="comment">//为低位</span></span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> s : <span class="number">1</span>;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> t : <span class="number">1</span>;</span><br><span class="line"> <span class="type">unsigned</span> <span class="type">int</span> l : <span class="number">1</span>;</span><br><span class="line">&#125;prnt;</span><br><span class="line"><span class="comment">//创建了4个1位字段, prnt大小为4字节, 但只利用其中4位</span></span><br><span class="line"><span class="comment">//可以用struct的方法来赋值</span></span><br><span class="line">prnt.f = <span class="number">0</span>; <span class="comment">//因为f只占1位, 所以只能被赋值1或0</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
   </div>
@@ -2681,10 +2680,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-10-08T18:52:35+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-03-10T15:08:56+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年10月8日</p>
+    <p>更新于：2026年3月10日</p>
   </a>
 </div>
 
@@ -2705,17 +2704,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/post/pointer/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>指针</p>
-          <p class='content'>指针
-函数指针
-声明:  type (*func_ptr) (type1, type2); -&gt; 此时func_ptr是一个函数指针. type函数的返回值, func_ptr变量名, t...</p>
+          <p class='content'>函数指针
+声明:  type (*func_ptr) (type1, type2); -&gt; 此时func_ptr是一个函数指针. type函数的返回值, func_ptr变量名, type...</p>
         </a>
       
       
         <a class='next' href='/post/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB/'>
           <p class='title'>存储类别<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>C中的储存类别
-关键字: auto、extern、static、register、const、volatile、restricted、_Thread_local、_Atomic
-函数: mall...</p>
+          <p class='content'>关键字: auto、extern、static、register、const、volatile、restricted、_Thread_local、_Atomic
+函数: malloc()、cal...</p>
         </a>
       
     </div>
@@ -2729,7 +2726,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
 
-  <article class="post white-box " id="comments">
+  <article class="post white-box shadow" id="comments">
     <span hidden>
       <meta itemprop="discussionUrl" content="/post/%E4%BD%8D%E6%93%8D%E4%BD%9C/index.html#comments">
     </span>
@@ -2763,19 +2760,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
 
-  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
-    
-  <header>
-    
-      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="toc-text">位操作</span></a></li></ol>
-    </div>
-  </section>
+  <div class="">
+    <!-- pjax占位 -->
+  </div>
 
   
 

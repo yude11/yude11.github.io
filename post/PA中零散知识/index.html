@@ -42,11 +42,11 @@
 <meta property="og:title" content="PA中零散知识">
 <meta property="og:url" content="http://yude11.github.io/post/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="yude&#39;s blog">
-<meta property="og:description" content="PA中零散知识 C语言相关   GCC编译器的语句表达式 12345AM_INPUT_KEYBRD_T ev &#x3D; (&#123;	AM_INPUT_KEYBRD_T __io_param; 	ioe_read(AM_INPUT_KEYBRD, &amp;__io_param);	__io_param;&#125;) 这里利用GCC编译器的语句表达式(Statement Expressions)特性">
+<meta property="og:description" content="C语言相关   GCC编译器的语句表达式 AM_INPUT_KEYBRD_T ev &#x3D; (&#123;	AM_INPUT_KEYBRD_T __io_param; 	ioe_read(AM_INPUT_KEYBRD, &amp;__io_param);	__io_param;&#125;) 这里利用GCC编译器的语句表达式(Statement Expressions)特性, 允许在表达式内部执行多">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-09-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-08T10:52:35.926Z">
+<meta property="article:modified_time" content="2026-03-10T07:09:31.109Z">
 <meta property="article:author" content="yude">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -1122,7 +1122,7 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 .l_header .nav-sub .title {
@@ -1704,7 +1704,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1754,11 +1754,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1332px;
-    left: calc((100% - 1332px) * 0.5);
+    max-width: 1132px;
+    left: calc((100% - 1132px) * 0.5);
   }
 }
-@media screen and (max-width: 1332px) {
+@media screen and (max-width: 1132px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773121406941),
+    lastupdate: new Date(1773132731485),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -1895,7 +1895,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       }
     },
     plugins: {
-      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":true,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
+      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":false,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
       fancybox: {"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.umd.js"},
       
       
@@ -2307,7 +2307,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin end-->
     <!-- front-matter body_begin begin -->
     <!-- front-matter body_begin end -->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto  show" style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2549,7 +2549,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md  article-type-post" id="post" itemscope itemprop="blogPost">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://yude11.github.io/post/PA中零散知识/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="yude's blog">
@@ -2610,22 +2610,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h3 id="PA中零散知识">PA中零散知识</h3>
-<h4 id="C语言相关">C语言相关</h4>
+    <h4 id="C语言相关">C语言相关</h4>
 <ol>
 <li>
 <p><code>GCC编译器</code>的<code>语句表达式</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AM_INPUT_KEYBRD_T ev = (&#123;</span><br><span class="line">	AM_INPUT_KEYBRD_T __io_param; </span><br><span class="line">	ioe_read(AM_INPUT_KEYBRD, &amp;__io_param);</span><br><span class="line">	__io_param;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">AM_INPUT_KEYBRD_T ev = (&#123;</span><br><span class="line">	AM_INPUT_KEYBRD_T __io_param; </span><br><span class="line">	ioe_read(AM_INPUT_KEYBRD, &amp;__io_param);</span><br><span class="line">	__io_param;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这里利用<code>GCC编译器</code>的<code>语句表达式</code>(<code>Statement Expressions</code>)特性, 允许在表达式内部执行多条语句, 并返回最后一条语句的值.</p>
 </li>
 <li>
 <p>结构体赋值</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*cfg = (AM_GPU_CONFIG_T) &#123;</span><br><span class="line">    .present = <span class="literal">true</span>, .has_accel = <span class="literal">false</span>,</span><br><span class="line">    .width = <span class="number">0</span>, .height = <span class="number">0</span>,</span><br><span class="line">    .vmemsz = <span class="number">0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*cfg = (AM_GPU_CONFIG_T) &#123;</span><br><span class="line">    .present = <span class="literal">true</span>, .has_accel = <span class="literal">false</span>,</span><br><span class="line">    .width = <span class="number">0</span>, .height = <span class="number">0</span>,</span><br><span class="line">    .vmemsz = <span class="number">0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>给一个结构体赋值, 中间的强制类型转换本来应该是多余的但是在PA中删掉会报错.</p>
 </li>
 <li>
 <p>宏</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> AM_DEVREG(id, reg, perm, ...) \</span></span><br><span class="line"><span class="meta">  enum &#123; AM_##reg = (id) &#125;; \</span></span><br><span class="line"><span class="meta">  typedef struct &#123; __VA_ARGS__; &#125; AM_##reg##_T;</span></span><br><span class="line"></span><br><span class="line">AM_DEVREG( <span class="number">1</span>, UART_CONFIG,  RD, <span class="type">bool</span> present);</span><br><span class="line"><span class="comment">//展开</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> &#123;</span>AM_UART_CONFIG = (<span class="number">1</span>)&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span> <span class="type">bool</span> present; &#125; AM_UART_CONFIG_T;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> AM_DEVREG(id, reg, perm, ...) \</span></span><br><span class="line"><span class="meta">  enum &#123; AM_##reg = (id) &#125;; \</span></span><br><span class="line"><span class="meta">  typedef struct &#123; __VA_ARGS__; &#125; AM_##reg##_T;</span></span><br><span class="line"></span><br><span class="line">AM_DEVREG( <span class="number">1</span>, UART_CONFIG,  RD, <span class="type">bool</span> present);</span><br><span class="line"><span class="comment">//展开</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> &#123;</span>AM_UART_CONFIG = (<span class="number">1</span>)&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span> <span class="type">bool</span> present; &#125; AM_UART_CONFIG_T;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>
 <p><code>##</code>: 标记粘贴(token-pasting)</p>
@@ -2640,7 +2639,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p>函数索引表</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> *lut[<span class="number">128</span>] = &#123;</span><br><span class="line">  [AM_TIMER_CONFIG] = __am_timer_config,  <span class="comment">//`[]`是c语言中数组赋值的方法,`AM_...`应该是枚举值代表序号</span></span><br><span class="line">  [AM_TIMER_RTC   ] = __am_timer_rtc,</span><br><span class="line">  [AM_TIMER_UPTIME] = __am_timer_uptime,</span><br><span class="line">  [AM_INPUT_CONFIG] = __am_input_config,</span><br><span class="line">  [AM_INPUT_KEYBRD] = __am_input_keybrd,</span><br><span class="line">  [AM_GPU_CONFIG  ] = __am_gpu_config,</span><br><span class="line">  [AM_GPU_FBDRAW  ] = __am_gpu_fbdraw,</span><br><span class="line">  [AM_GPU_STATUS  ] = __am_gpu_status,</span><br><span class="line">  [AM_UART_CONFIG ] = __am_uart_config,</span><br><span class="line">  [AM_AUDIO_CONFIG] = __am_audio_config,</span><br><span class="line">  [AM_AUDIO_CTRL  ] = __am_audio_ctrl,</span><br><span class="line">  [AM_AUDIO_STATUS] = __am_audio_status,</span><br><span class="line">  [AM_AUDIO_PLAY  ] = __am_audio_play,</span><br><span class="line">  [AM_DISK_CONFIG ] = __am_disk_config,</span><br><span class="line">  [AM_DISK_STATUS ] = __am_disk_status,</span><br><span class="line">  [AM_DISK_BLKIO  ] = __am_disk_blkio,</span><br><span class="line">  [AM_NET_CONFIG  ] = __am_net_config,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> *lut[<span class="number">128</span>] = &#123;</span><br><span class="line">  [AM_TIMER_CONFIG] = __am_timer_config,  <span class="comment">//`[]`是c语言中数组赋值的方法,`AM_...`应该是枚举值代表序号</span></span><br><span class="line">  [AM_TIMER_RTC   ] = __am_timer_rtc,</span><br><span class="line">  [AM_TIMER_UPTIME] = __am_timer_uptime,</span><br><span class="line">  [AM_INPUT_CONFIG] = __am_input_config,</span><br><span class="line">  [AM_INPUT_KEYBRD] = __am_input_keybrd,</span><br><span class="line">  [AM_GPU_CONFIG  ] = __am_gpu_config,</span><br><span class="line">  [AM_GPU_FBDRAW  ] = __am_gpu_fbdraw,</span><br><span class="line">  [AM_GPU_STATUS  ] = __am_gpu_status,</span><br><span class="line">  [AM_UART_CONFIG ] = __am_uart_config,</span><br><span class="line">  [AM_AUDIO_CONFIG] = __am_audio_config,</span><br><span class="line">  [AM_AUDIO_CTRL  ] = __am_audio_ctrl,</span><br><span class="line">  [AM_AUDIO_STATUS] = __am_audio_status,</span><br><span class="line">  [AM_AUDIO_PLAY  ] = __am_audio_play,</span><br><span class="line">  [AM_DISK_CONFIG ] = __am_disk_config,</span><br><span class="line">  [AM_DISK_STATUS ] = __am_disk_status,</span><br><span class="line">  [AM_DISK_BLKIO  ] = __am_disk_blkio,</span><br><span class="line">  [AM_NET_CONFIG  ] = __am_net_config,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>创建了一个无符号指针数组.</li>
 <li>初始化: 使用<code>[索引] = 值</code>的方法, 为数组中指定位置赋值.  --&gt; 这种方法必须按照顺序来, 如果有空的, <strong>跳过的会被赋空值</strong>.</li>
@@ -2744,7 +2743,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>设备访问:</p>
 <p>外界访问设备的API: <code>io_read</code>, <code>io_write</code></p>
 <p>AM对内存访问的封装: <code>inl</code>, <code>outl</code>…</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">访存过程:(内存映射)</span><br><span class="line">io_read/io_write --&gt; ioe_read/ioe_write --&gt; inl/outl... --&gt; vaddr_read --&gt;padder_read --&gt; mmio_read --&gt; map_read --&gt; device(callback_func)</span><br><span class="line"></span><br><span class="line">1.ioe_raed通过访问设备的寄存器, 来获得信息.</span><br><span class="line">2.寄存器通过设备的地址来访问内存(inl/outl),具体在第*3*点</span><br><span class="line">3.在内存访问时, 如果在内存内访问内存, 不再内存内访问对应设备</span><br><span class="line">4.使用设备通过对应设备的回调函数</span><br></pre></td></tr></table></figure>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">访存过程:(内存映射)</span><br><span class="line">io_read/io_write --&gt; ioe_read/ioe_write --&gt; inl/outl... --&gt; vaddr_read --&gt;padder_read --&gt; mmio_read --&gt; map_read --&gt; device(callback_func)</span><br><span class="line"></span><br><span class="line">1.ioe_raed通过访问设备的寄存器, 来获得信息.</span><br><span class="line">2.寄存器通过设备的地址来访问内存(inl/outl),具体在第*3*点</span><br><span class="line">3.在内存访问时, 如果在内存内访问内存, 不再内存内访问对应设备</span><br><span class="line">4.使用设备通过对应设备的回调函数</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>*(volatile uint32_t *)addr;</code>: 在<code>inl</code>函数中返回值是这个.</p>
@@ -2851,9 +2850,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>
 <p>读取像素:</p>
 <p>首先在<code>PAL_Init</code>中, 读取文件<code>mgo.mk</code>到<code>gpGlobals-&gt;f.fpMGO文件指针中</code>, <code>fopen</code> --&gt; … --&gt;<code>_open</code> --&gt; <code>_syscall</code> --&gt; <code>ecall</code> --&gt; <code>__am_asm_trap</code> --&gt; <code>__am_irq_handle</code> --&gt; <code>do_event</code> --&gt; <code>do_syscall</code> --&gt; <code>sys_open</code> --&gt; <code>fsopen</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PAL_MKFReadChunk(buf, <span class="number">32000</span>, SPRITENUM_SPLASH_CRANE, gpGlobals-&gt;f.fpMGO);</span><br><span class="line">Decompress(buf, lpSpriteCrane, <span class="number">32000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">PAL_MKFReadChunk(buf, <span class="number">32000</span>, SPRITENUM_SPLASH_CRANE, gpGlobals-&gt;f.fpMGO);</span><br><span class="line">Decompress(buf, lpSpriteCrane, <span class="number">32000</span>);</span><br></pre></td></tr></table></figure>
 <p>将鹤的数据读入<code>lpSpriteCrane</code>中, 调用<code>fread</code>, 系统调用<code>read</code>, 最后调用函数<code>ramrisk_read</code>.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	LPCBITMAPRLE lpFrame = PAL_SpriteGetFrame(lpSpriteCrane,cranepos[i][<span class="number">2</span>] =  \</span><br><span class="line">                           (cranepos[i][<span class="number">2</span>] + (iCraneFrame &amp; <span class="number">1</span>)) % <span class="number">8</span>);  <span class="comment">//读取出一帧的信息</span></span><br><span class="line">    cranepos[i][<span class="number">1</span>] += ((iImgPos &gt; <span class="number">1</span>) &amp;&amp; (iImgPos &amp; <span class="number">1</span>)) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">	PAL_RLEBlitToSurface(lpFrame, gpScreen, PAL_XY(cranepos[i][<span class="number">0</span>], cranepos[i][<span class="number">1</span>])); <span class="comment">//将一帧的信息拼接到gpScreen主屏幕上</span></span><br><span class="line">    cranepos[i][<span class="number">0</span>]--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	LPCBITMAPRLE lpFrame = PAL_SpriteGetFrame(lpSpriteCrane,cranepos[i][<span class="number">2</span>] =  \</span><br><span class="line">                           (cranepos[i][<span class="number">2</span>] + (iCraneFrame &amp; <span class="number">1</span>)) % <span class="number">8</span>);  <span class="comment">//读取出一帧的信息</span></span><br><span class="line">    cranepos[i][<span class="number">1</span>] += ((iImgPos &gt; <span class="number">1</span>) &amp;&amp; (iImgPos &amp; <span class="number">1</span>)) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">	PAL_RLEBlitToSurface(lpFrame, gpScreen, PAL_XY(cranepos[i][<span class="number">0</span>], cranepos[i][<span class="number">1</span>])); <span class="comment">//将一帧的信息拼接到gpScreen主屏幕上</span></span><br><span class="line">    cranepos[i][<span class="number">0</span>]--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>屏幕显示:</p>
@@ -2886,10 +2885,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-10-08T18:52:35+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-03-10T15:09:31+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年10月8日</p>
+    <p>更新于：2026年3月10日</p>
   </a>
 </div>
 
@@ -2910,10 +2909,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>正则表达式</p>
-          <p class='content'>正则表达式
-正则表达式: 是用于匹配和操作文本的强大工具
+          <p class='content'>正则表达式: 是用于匹配和操作文本的强大工具
 https://deerchao.cn/tutorials/regex/regex.htm #教程
-https://regex101.c...</p>
+https://regex101.com/   ...</p>
         </a>
       
       
@@ -2925,7 +2923,7 @@ https://regex101.c...</p>
 
 
 MPI_init: 根据main函数的参数对MPI进行初始化
-1234MPI_init(	int* argc_p ,--&gt; ma...</p>
+MPI_init(	int* argc_p ,--&gt; main函数...</p>
         </a>
       
     </div>
@@ -2939,7 +2937,7 @@ MPI_init: 根据main函数的参数对MPI进行初始化
   
 
 
-  <article class="post white-box " id="comments">
+  <article class="post white-box shadow" id="comments">
     <span hidden>
       <meta itemprop="discussionUrl" content="/post/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/index.html#comments">
     </span>
@@ -2983,7 +2981,7 @@ MPI_init: 根据main函数的参数对MPI进行初始化
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86"><span class="toc-text">PA中零散知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3"><span class="toc-text">C语言相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3"><span class="toc-text">汇编相关:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PA%E7%9B%B8%E5%85%B3"><span class="toc-text">PA相关</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3"><span class="toc-text">C语言相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3"><span class="toc-text">汇编相关:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PA%E7%9B%B8%E5%85%B3"><span class="toc-text">PA相关</span></a></li></ol>
     </div>
   </section>
 

@@ -42,11 +42,11 @@
 <meta property="og:title" content="MPI">
 <meta property="og:url" content="http://yude11.github.io/post/MPI%E5%B9%B6%E8%A1%8C%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="yude&#39;s blog">
-<meta property="og:description" content="MPI并行设计 利用MPI来进行进程间的同步 常用函数   MPI_init: 根据main函数的参数对MPI进行初始化 1234MPI_init(	int* argc_p ,--&gt; main函数中args参数	char*** argv_p --&gt; main函数中argv参数)   MPI_Comm_size: MPI创建的进程数 1234MPI_Comm_size(    MPI_C">
+<meta property="og:description" content="MPI并行设计 利用MPI来进行进程间的同步 常用函数   MPI_init: 根据main函数的参数对MPI进行初始化 MPI_init(	int* argc_p ,--&gt; main函数中args参数	char*** argv_p --&gt; main函数中argv参数)   MPI_Comm_size: MPI创建的进程数 MPI_Comm_size(    MPI_Comm comm">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-09-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-08T10:52:35.926Z">
+<meta property="article:modified_time" content="2026-03-10T06:41:09.333Z">
 <meta property="article:author" content="yude">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -1122,7 +1122,7 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 .l_header .nav-sub .title {
@@ -1704,7 +1704,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1754,11 +1754,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1332px;
-    left: calc((100% - 1332px) * 0.5);
+    max-width: 1132px;
+    left: calc((100% - 1132px) * 0.5);
   }
 }
-@media screen and (max-width: 1332px) {
+@media screen and (max-width: 1132px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773121406941),
+    lastupdate: new Date(1773132731485),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -1895,7 +1895,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       }
     },
     plugins: {
-      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":true,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
+      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":false,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
       fancybox: {"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.umd.js"},
       
       
@@ -2307,7 +2307,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin end-->
     <!-- front-matter body_begin begin -->
     <!-- front-matter body_begin end -->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto  show" style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2474,7 +2474,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper post dock' style="display: none;">
+      <div id="none" class='cover-wrapper docs dock' style="display: none;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg"></div>
 
@@ -2549,7 +2549,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md  article-type-post" id="post" itemscope itemprop="blogPost">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow article-type-docs" id="docs" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://yude11.github.io/post/MPI并行设计/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="yude's blog">
@@ -2620,23 +2620,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <ul>
 <li>
 <p><code>MPI_init</code>: 根据<code>main</code>函数的参数对<code>MPI</code>进行初始化</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MPI_init(</span><br><span class="line">	<span class="type">int</span>* argc_p ,--&gt; main函数中args参数</span><br><span class="line">	<span class="type">char</span>*** argv_p --&gt; main函数中argv参数</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MPI_init(</span><br><span class="line">	<span class="type">int</span>* argc_p ,--&gt; main函数中args参数</span><br><span class="line">	<span class="type">char</span>*** argv_p --&gt; main函数中argv参数</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>MPI_Comm_size</code>: <code>MPI</code>创建的进程数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MPI_Comm_size(</span><br><span class="line">    MPI_Comm comm , --&gt;通信子,表示全部的进程,一般为MPI_COMM_WORLD</span><br><span class="line">    _out_ <span class="type">int</span>* comm_sz_p  --&gt;进程的数量</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MPI_Comm_size(</span><br><span class="line">    MPI_Comm comm , --&gt;通信子,表示全部的进程,一般为MPI_COMM_WORLD</span><br><span class="line">    _out_ <span class="type">int</span>* comm_sz_p  --&gt;进程的数量</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>MPI_Comm_rank</code>: 当前的进程编号</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MPI_Comm_rank(</span><br><span class="line">	MPI_Comm comm, </span><br><span class="line">    _out_ <span class="type">int</span>* my_rank_p --&gt;表示当前的进程的编号</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MPI_Comm_rank(</span><br><span class="line">	MPI_Comm comm, </span><br><span class="line">    _out_ <span class="type">int</span>* my_rank_p --&gt;表示当前的进程的编号</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>MPI_Send</code>: 将消息传递到其他进程</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MPI_Send(</span><br><span class="line">    <span class="type">void</span>* msg_buf_p, --&gt; 指向传递消息的指针</span><br><span class="line">    <span class="type">int</span> msg_sz,      --&gt; 表示消息数量</span><br><span class="line">    <span class="type">int</span> msg_type,    --&gt; 表示消息的种类</span><br><span class="line">    <span class="type">int</span> dest,        --&gt; 传递消息的目的进程</span><br><span class="line">    <span class="type">int</span> tag,         --&gt; 消息的标签, 有相同的标签才能接受消息</span><br><span class="line">    MPI_Comm comm</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MPI_Send(</span><br><span class="line">    <span class="type">void</span>* msg_buf_p, --&gt; 指向传递消息的指针</span><br><span class="line">    <span class="type">int</span> msg_sz,      --&gt; 表示消息数量</span><br><span class="line">    <span class="type">int</span> msg_type,    --&gt; 表示消息的种类</span><br><span class="line">    <span class="type">int</span> dest,        --&gt; 传递消息的目的进程</span><br><span class="line">    <span class="type">int</span> tag,         --&gt; 消息的标签, 有相同的标签才能接受消息</span><br><span class="line">    MPI_Comm comm</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>MPI_Recv</code>: 接受其他进程传来的消息</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">MPI_Rect(</span><br><span class="line">	_out_ <span class="type">void</span>* msg_buf_p, --&gt; 指向接受消息的指针</span><br><span class="line">    <span class="type">int</span> msg_sz,      --&gt; 表示消息数量</span><br><span class="line">    <span class="type">int</span> msg_type,    --&gt; 表示消息的种类</span><br><span class="line">    <span class="type">int</span> source,      --&gt; 传递消息的来源进程 如果任意来源:MPI_ANY_SOURSE</span><br><span class="line">    <span class="type">int</span> tag,         --&gt; 消息的标签, 有相同的标签才能接受消息 如果任意tag:MPI_ANY_TAG</span><br><span class="line">    MPI_Comm comm,</span><br><span class="line">    _out_ MPI_Status* status_p --&gt; 记录消息相关的信息,不想记录: MPI_STATUS_IGNORE</span><br><span class="line">)</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> MPI_TAG;</span><br><span class="line">    <span class="type">int</span> MPI_SOURCE;</span><br><span class="line">    <span class="type">int</span> MPI_ERROR;</span><br><span class="line">&#125;MPI_Status</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MPI_Rect(</span><br><span class="line">	_out_ <span class="type">void</span>* msg_buf_p, --&gt; 指向接受消息的指针</span><br><span class="line">    <span class="type">int</span> msg_sz,      --&gt; 表示消息数量</span><br><span class="line">    <span class="type">int</span> msg_type,    --&gt; 表示消息的种类</span><br><span class="line">    <span class="type">int</span> source,      --&gt; 传递消息的来源进程 如果任意来源:MPI_ANY_SOURSE</span><br><span class="line">    <span class="type">int</span> tag,         --&gt; 消息的标签, 有相同的标签才能接受消息 如果任意tag:MPI_ANY_TAG</span><br><span class="line">    MPI_Comm comm,</span><br><span class="line">    _out_ MPI_Status* status_p --&gt; 记录消息相关的信息,不想记录: MPI_STATUS_IGNORE</span><br><span class="line">)</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> MPI_TAG;</span><br><span class="line">    <span class="type">int</span> MPI_SOURCE;</span><br><span class="line">    <span class="type">int</span> MPI_ERROR;</span><br><span class="line">&#125;MPI_Status</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>MPI_Finalize</code>: 将<code>MPI</code>使用的资源空间释放</p>
@@ -2644,7 +2644,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p><code>MPI_GET_count</code>: 接受的数据的个数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MPI_GET_count(</span><br><span class="line">	MPI_Status* status_p,</span><br><span class="line">    <span class="type">int</span> msg_type,</span><br><span class="line">    _out_ <span class="type">int</span>* count    --&gt; 数据的数量</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MPI_GET_count(</span><br><span class="line">	MPI_Status* status_p,</span><br><span class="line">    <span class="type">int</span> msg_type,</span><br><span class="line">    _out_ <span class="type">int</span>* count    --&gt; 数据的数量</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>MPI_Reuce</code>:  多对一的通信</p>
@@ -2654,7 +2654,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>
 <p><code>MPI_Bcast</code>: 一对多的通信相同信息</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MPI_Bcast(</span><br><span class="line">    <span class="type">void</span> *msg_buf_p,</span><br><span class="line">    <span class="type">int</span> msg_sz,</span><br><span class="line">    <span class="type">int</span> msg_type,</span><br><span class="line">    <span class="type">int</span> source,</span><br><span class="line">    MPI_Comm comm</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">MPI_Bcast(</span><br><span class="line">    <span class="type">void</span> *msg_buf_p,</span><br><span class="line">    <span class="type">int</span> msg_sz,</span><br><span class="line">    <span class="type">int</span> msg_type,</span><br><span class="line">    <span class="type">int</span> source,</span><br><span class="line">    MPI_Comm comm</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><code>MPI_Scatter</code>: 一对多散播不同信息</p>
@@ -2684,10 +2684,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-10-08T18:52:35+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-03-10T14:41:09+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年10月8日</p>
+    <p>更新于：2026年3月10日</p>
   </a>
 </div>
 
@@ -2708,12 +2708,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/post/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>PA中零散知识</p>
-          <p class='content'>PA中零散知识
-C语言相关
+          <p class='content'>C语言相关
 
 
 GCC编译器的语句表达式
-12345AM_INPUT_KEYBRD_T ev = (&#123;	AM_INPUT_KEYBRD_T __io_param; 	i...</p>
+AM_INPUT_KEYBRD_T ev = (&#123;	AM_INPUT_KEYBRD_T __io_param; 	ioe_read(AM_IN...</p>
         </a>
       
       
@@ -2737,7 +2736,7 @@ directive_name指...</p>
   
 
 
-  <article class="post white-box " id="comments">
+  <article class="post white-box shadow" id="comments">
     <span hidden>
       <meta itemprop="discussionUrl" content="/post/MPI%E5%B9%B6%E8%A1%8C%E8%AE%BE%E8%AE%A1/index.html#comments">
     </span>
@@ -2837,7 +2836,7 @@ directive_name指...</p>
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=true;
+  pdata.ispage=false;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};

@@ -42,11 +42,11 @@
 <meta property="og:title" content="文件操作">
 <meta property="og:url" content="http://yude11.github.io/post/file/index.html">
 <meta property="og:site_name" content="yude&#39;s blog">
-<meta property="og:description" content="文件操作 文本模式与二进制模式: 二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同 文本模式:  在windows上会预处理, 读出时将\r\n转化为\n, 写入时将\n转化为\r\n, linux不会预处理. 标准文件: 将标准I&#x2F;O抽象为文件 标准输入(standard input): getchar, scanf. 指向标准输入设备的文件指针，通常是键盘 标准输出(sta">
+<meta property="og:description" content="文本模式与二进制模式: 二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同 文本模式:  在windows上会预处理, 读出时将\r\n转化为\n, 写入时将\n转化为\r\n, linux不会预处理. 标准文件: 将标准I&#x2F;O抽象为文件 标准输入(standard input): getchar, scanf. 指向标准输入设备的文件指针，通常是键盘 标准输出(standard">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-09-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-08T11:00:53.016Z">
+<meta property="article:modified_time" content="2026-03-10T07:09:00.621Z">
 <meta property="article:author" content="yude">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -1122,7 +1122,7 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 .l_header .nav-sub .title {
@@ -1704,7 +1704,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1754,11 +1754,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1332px;
-    left: calc((100% - 1332px) * 0.5);
+    max-width: 1132px;
+    left: calc((100% - 1132px) * 0.5);
   }
 }
-@media screen and (max-width: 1332px) {
+@media screen and (max-width: 1132px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773121406941),
+    lastupdate: new Date(1773132731485),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -1895,7 +1895,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       }
     },
     plugins: {
-      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":true,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
+      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":false,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
       fancybox: {"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.umd.js"},
       
       
@@ -2307,7 +2307,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin end-->
     <!-- front-matter body_begin begin -->
     <!-- front-matter body_begin end -->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto  show" style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2549,7 +2549,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md  article-type-post" id="post" itemscope itemprop="blogPost">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://yude11.github.io/post/file/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="yude's blog">
@@ -2610,8 +2610,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h3 id="文件操作">文件操作</h3>
-<p>文本模式与二进制模式:<br>
+    <p>文本模式与二进制模式:<br>
 二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同<br>
 文本模式:  在<code>windows</code>上会预处理, 读出时将<code>\r\n</code>转化为<code>\n</code>, 写入时将<code>\n</code>转化为<code>\r\n</code>, <code>linux</code>不会预处理.</p>
 <p>标准文件: 将<code>标准I/O</code>抽象为<code>文件</code><br>
@@ -2641,7 +2640,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><code>getc</code>: 在文件中获得一个字符</p>
 <p><code>int getc(FILE* fp)</code></p>
 <p>传入文件的指针, 返回值为文件的一个字符. 读取字符后会将文件指针的位置向后移一位. 当读取一个字符发现时文件结尾时, 会返回一个值<code>EOF</code>(-1).</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文件时, while循环的设计方法</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">while</span>((ch = getc(fp) != EOF)&#123;&#125;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">ch = getc(fp);</span><br><span class="line"><span class="keyword">while</span>(ch != EOF)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">	ch = getc(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//读取文件时, while循环的设计方法</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">while</span>((ch = getc(fp) != EOF)&#123;&#125;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">ch = getc(fp);</span><br><span class="line"><span class="keyword">while</span>(ch != EOF)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">	ch = getc(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>getc(stdin)</code> = <code>getchar()</code></p>
 </li>
 <li>
@@ -2728,10 +2727,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-10-08T19:00:53+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-03-10T15:09:00+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年10月8日</p>
+    <p>更新于：2026年3月10日</p>
   </a>
 </div>
 
@@ -2752,21 +2751,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/post/MAKEFILE/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>makefile学习</p>
-          <p class='content'>MAKEFILE
-总览
+          <p class='content'>总览
 一个Makefile教程
 Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定义、文件指示和注释。
 
 
-显示规则: 说明了如何生成一个或多个目标文件. 这是由...</p>
+显示规则: 说明了如何生成一个或多个目标文件. 这是由Makefile书...</p>
         </a>
       
       
         <a class='next' href='/post/pointer/'>
           <p class='title'>指针<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>指针
-函数指针
-声明:  type (*func_ptr) (type1, type2); -&gt; 此时func_ptr是一个函数指针. type函数的返回值, func_ptr变量名, t...</p>
+          <p class='content'>函数指针
+声明:  type (*func_ptr) (type1, type2); -&gt; 此时func_ptr是一个函数指针. type函数的返回值, func_ptr变量名, type...</p>
         </a>
       
     </div>
@@ -2780,7 +2777,7 @@ Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定
   
 
 
-  <article class="post white-box " id="comments">
+  <article class="post white-box shadow" id="comments">
     <span hidden>
       <meta itemprop="discussionUrl" content="/post/file/index.html#comments">
     </span>
@@ -2824,7 +2821,7 @@ Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%8E%9F%E7%90%86"><span class="toc-text">文件读取原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%8E%9F%E7%90%86"><span class="toc-text">文件读取原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol>
     </div>
   </section>
 
