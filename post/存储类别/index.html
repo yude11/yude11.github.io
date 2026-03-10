@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773136029663),
+    lastupdate: new Date(1773137150775),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2742,13 +2742,20 @@ auto变量具有自动存储期、块作用域及无链接.<br>
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/Git/'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Gits</p>
-          <p class='content'>Git教程  (菜鸟教程)
-结构介绍
-git的版本管理结构是一个有向图，每个版本是图中的一个节点，每个节点间用有向边来连接。
-主分支master: 是项目的主要方向.
-从主分支可以有多个bran...</p>
+        <a class='prev' href='/post/%E4%BD%8D%E6%93%8D%E4%BD%9C/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>位操作</p>
+          <p class='content'>
+
+按位运算符
+
+&amp; 按位与运算
+| 按位或运算
+~ 按位取反运算 -&gt; 一元运算符
+^ 按位异或运算
+
+掩码:
+按位运算符通常用于掩码
+掩码是指的是一些设置为开(1)或关(0)的...</p>
         </a>
       
       
@@ -3173,7 +3180,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   function pjax_giscus() {
     const HEAD = check_giscus();
     if (!HEAD) return;
-    let cfg = Object.assign({"theme":{"light":"light","dark":"dark"}},pdata.commentConfig)
+    let cfg = Object.assign({"theme":{"light":"light","dark":"dark"},"repo":"yude11/yude11.github.io","repo-id":"R_kgDOMuhvCg","category":"Announcements","category-id":"DIC_kwDOMuhvCs4C4E19","mapping":"pathname","reactions-enabled":"1","emit-metadata":"0","lang":"zh-CN"},pdata.commentConfig)
     const script = document.createElement('script');
     script.setAttribute('src', 'https://giscus.app/client.js');
     Object.keys(cfg).forEach(k=>{
