@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2617,7 +2617,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h5 id="gcc编译过程">gcc编译过程</h5>
 <p><img src="../../pic/gcc_compiling_process.png" class="lazyload" data-srcset="../../pic/gcc_compiling_process.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="gcc_compiling_process"></p>
 <ol>
-<li>
+<li class="lvl-3">
 <p>预处理(Pre-Processing):</p>
 <p>过程中展开宏定义(define), 展开头文件(.h), 对条件进行编译(ifdef), 删除所有注释(//).</p>
 <p>用<code>-E</code>参数, 建<code>.c</code>文件转换为<code>.i</code>文件.</p>
@@ -2626,17 +2626,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>这个时候不会检查代码的语法, 所以有错误也不会报错</p>
 </blockquote>
 </li>
-<li>
+<li class="lvl-3">
 <p>编译:</p>
 <p>检查语法是否有错误, 用<code>-S</code>参数将<code>.i</code>文件转换为<code>.s</code>汇编文件</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gcc -S hello.i -o hello.s</span><br><span class="line">gcc -S hello.c -o hello.s</span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-3">
 <p>汇编:</p>
 <p>将汇编文件<code>.s</code>生成目标文件(二进制文件), 用<code>-c</code>参数将<code>.s</code>文本代码文件变成了<code>.o</code>二进制代码文件.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gcc -c hello.s -o hello.o</span><br><span class="line">gcc -c hello.c -o hello.o</span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-3">
 <p>链接:</p>
 <p>链接的过程是找到依赖的库文件, 将目标文件链接位可执行文件, 默认无参数就是直接生成可执行文件.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gcc hello.o -o hello</span><br><span class="line">gcc hello.c -o hello</span><br></pre></td></tr></table></figure>
@@ -2782,7 +2782,7 @@ Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#gcc%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="toc-text">gcc编译过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gcc%E7%BC%96%E8%AF%91%E5%8F%82%E6%95%B0"><span class="toc-text">gcc编译参数:</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#gcc%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">gcc编译过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gcc%E7%BC%96%E8%AF%91%E5%8F%82%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">gcc编译参数:</span></a></li></ol>
     </div>
   </section>
 
@@ -3435,6 +3435,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/","name":"C"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/GCC/","name":"GCC简介"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"GCC简介","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/GCC/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/GCC/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T07:09:08.933Z","articleSection":"C","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

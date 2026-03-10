@@ -42,7 +42,7 @@
 <meta property="og:title" content="文件操作">
 <meta property="og:url" content="http://yude11.github.io/post/file/index.html">
 <meta property="og:site_name" content="yude&#39;s blog">
-<meta property="og:description" content="文本模式与二进制模式: 二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同 文本模式:  在windows上会预处理, 读出时将\r\n转化为\n, 写入时将\n转化为\r\n, linux不会预处理. 标准文件: 将标准I&#x2F;O抽象为文件 标准输入(standard input): getchar, scanf. 指向标准输入设备的文件指针，通常是键盘 标准输出(standard">
+<meta property="og:description" content="文本模式与二进制模式: 二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同文本模式:  在windows上会预处理, 读出时将\r\n转化为\n, 写入时将\n转化为\r\n, linux不会预处理. 标准文件: 将标准I&#x2F;O抽象为文件 标准输入(standard input): getchar, scanf. 指向标准输入设备的文件指针，通常是键盘 标准输出(standard">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-09-07T16:00:00.000Z">
@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2611,8 +2611,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
     <p>文本模式与二进制模式:<br>
-二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同<br>
-文本模式:  在<code>windows</code>上会预处理, 读出时将<code>\r\n</code>转化为<code>\n</code>, 写入时将<code>\n</code>转化为<code>\r\n</code>, <code>linux</code>不会预处理.</p>
+二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同文本模式:  在<code>windows</code>上会预处理, 读出时将<code>\r\n</code>转化为<code>\n</code>, 写入时将<code>\n</code>转化为<code>\r\n</code>, <code>linux</code>不会预处理.</p>
 <p>标准文件: 将<code>标准I/O</code>抽象为<code>文件</code><br>
 <code>标准输入(standard input)</code>: <code>getchar</code>, <code>scanf</code>. 指向标准输入设备的文件指针，通常是键盘<br>
 <code>标准输出(standard output)</code>: <code>putchar</code>, <code>puts</code>, <code>printf</code>. 指向标准输出设备的文件指针，通常是屏幕<br>
@@ -2623,66 +2622,66 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <code>标准错误</code>: <code>stderr</code></p>
 <h4 id="函数">函数</h4>
 <p>头文件: <code>stdio.h</code></p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>fopen</code> :打开一个文件, 赋给文件指针.</p>
 <p><code>FIILE* fopen(const char *file, const char* mode)</code></p>
 <p>传入<code>文件路径</code>(支持相对与绝对路径), 返回一个<code>指向文件头的文件指针</code>. 当无文件时, 返回<code>NULL</code>.</p>
 <p><img src="../../pic/fopen_mode.png" class="lazyload" data-srcset="../../pic/fopen_mode.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="fopen_mode"></p>
 <p><strong>注意</strong>: <strong>在<code>w</code>模式打开文件会直接删除当前文件的所有内容</strong></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fclose</code>: 关闭指定文件.</p>
 <p><code>int fclose(FILE* fp)</code></p>
 <p>当成功关闭返回<code>0</code>, 失败返回<code>EOF</code>.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>getc</code>: 在文件中获得一个字符</p>
 <p><code>int getc(FILE* fp)</code></p>
 <p>传入文件的指针, 返回值为文件的一个字符. 读取字符后会将文件指针的位置向后移一位. 当读取一个字符发现时文件结尾时, 会返回一个值<code>EOF</code>(-1).</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//读取文件时, while循环的设计方法</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">while</span>((ch = getc(fp) != EOF)&#123;&#125;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">ch = getc(fp);</span><br><span class="line"><span class="keyword">while</span>(ch != EOF)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">	ch = getc(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>getc(stdin)</code> = <code>getchar()</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>putc</code>: 往文件中输出一个字符</p>
 <p><code>int putc(char c, FILE* fp)</code></p>
 <p><code>putc(c, stdout)</code> = <code>getchar()</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fprintf</code>: 将一段文本格式化输出到文件中.</p>
 <p><code>int fprintf(FILE* fp, const char* format, ...)</code></p>
 <p>与<code>printf</code>的用法类似.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fscanf</code>: 将文件中格式化的文本输入到变量中.</p>
 <p><code>int fscanf(FILE* fp, const char* format, ...)</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fgets</code>: 在文件中读取一个字符串.</p>
 <p><code>char* fgets(char* buf, int maxlen, FILE* fp)</code></p>
 <p>传入待输入字符串<code>buf</code>, 最大长度<code>maxlen</code>, 文件指针<code>fp</code>, 当读到<code>\n</code>或<code>文件结尾EOF</code>或到<code>最大长度时</code>会停止读取, 将字符串末尾加上<code>\0</code>. 当读取到<code>\n</code>时, <code>\n</code>会在字符串中. 当读到<code>EOF</code>会返回<code>NULL</code>, 其余时间返回传入地址.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fputs</code>: 将字符串输入到文件中.</p>
 <p><code>int fputs(char* str, FILE* fp)</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fseek</code>: 将文件指针移动到某个位置.</p>
 <p><code>int fseek(FILE* fp, long offset, int origin(mode))</code></p>
 <p>将文件指针移动到<code>origin</code>, 偏移<code>offset</code>位置. 正常返回0, 异常返回-1(超出文件范围)</p>
 <p><img src="../../pic/fseek_origin.png" class="lazyload" data-srcset="../../pic/fseek_origin.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="fseek_origin"></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>ftell</code>: 返回当前位置.</p>
 <p><code>long ftell(FILE* fp)</code></p>
 <p>返回当前文件指针较文件开头的偏移量.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fread</code>: 读取二进制数据.</p>
 <p><code>size_t fread(void *ptr, size_t size, size_t num, FILE* fp)</code></p>
 <p>返回值正常是<code>num</code>, 异常小于<code>num</code>.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>fwrite</code>: 写入二进制数据.</p>
 <p><code>size_t fwrite(const void *ptr, size_t size, size_t num, FILE* fp)</code></p>
 <p><code>ptr</code>是待写入数据的地址, <code>size</code>表示待写入数据的大小(字节为单位), <code>num</code>表示写入数据块的数量. 返回值为整形(不定), 正常为<code>num</code>, 错误小于<code>num</code>.</p>
@@ -2692,14 +2691,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><code>fopen</code>在打开文件的时候还创建了读/写缓冲区, 以及一个包含缓冲区和文件数据的结构, 返回的文件指针指向这个结构.</p>
 <p>调用输入输出函数时, 数据先传入缓冲区, 缓冲区充满后, 将数据调出.</p>
 <h4 id="其他">其他</h4>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p>关于<code>二进制文件</code>与<code>文本文件</code>.</p>
 <p><code>文本文件</code>: 一个数据是将数值转换为字符串存入文件中的</p>
 <p><code>二进制文件</code>: 数据直接把数据本身直接存入文件, 应该用<code>fread</code>, <code>fwrite</code>读写.</p>
 <p>例如: 文本数据: int(11) -&gt; “11”, 二进制数据: int(11) -&gt;0x0000000C</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>__restrict__</code></p>
 </li>
 </ul>
@@ -2821,7 +2820,7 @@ Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%8E%9F%E7%90%86"><span class="toc-text">文件读取原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">文件读取原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol>
     </div>
   </section>
 
@@ -3474,6 +3473,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/","name":"C"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/file/","name":"文件操作"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"文件操作","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/file/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/file/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T07:09:00.621Z","articleSection":"C","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

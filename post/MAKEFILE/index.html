@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2614,78 +2614,82 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>一个<a target="_blank" rel="noopener" href="https://blog.csdn.net/whitefish520/article/details/103968609">Makefile教程</a></p>
 <p><strong>Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定义、文件指示和注释。</strong></p>
 <ol>
-<li>
+<li class="lvl-3">
 <p>显示规则: 说明了如何生成一个或多个目标文件. 这是由<code>Makefile</code>书写者明显指出的, 要生成的文件, 文件的依赖文件, 生成的命令.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>隐晦规则: <code>make</code>命名有自动推导的功能, 所以隐晦的规则可以让我们比较粗略的书写<code>Makefile</code>.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>变量: 在<code>Makefile</code>中, 变量类似于C语言中的宏, 在<code>Makefile</code>执行时, 变量直接拓展到相应的引用的位置.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>文件指示: 一是在<code>Makefile</code>中引用另一个<code>Makefile</code> (类似与C中<code>include</code>) , 二是根据某些情况来指定<code>Makefile</code>中的有效部分 (类似于C中预编译<code>#if</code>) .</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>注释: 注释标识符<code>#</code>.</p>
 </li>
 </ol>
 <p><strong>make的工作方式:</strong></p>
 <ol>
-<li>
+<li class="lvl-3">
 <p>读入所有的Makefile.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>读入被include的Makefile.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>初始化文件中的变量.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>推导隐晦规则, 并分析所有规则.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>为所有的目标文件创建依赖关系链.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>根据依赖关系, 决定哪些目标要重新生成.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>执行生成命令.</p>
 </li>
 </ol>
 <h4 id="MAKEFILE的基本规则">MAKEFILE的基本规则</h4>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p>Makefile的目的: 编译生成我们所需要的目标执行文件</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>编译规则</p>
-<ul>
-<li>如果没有编译过，那所有C文件都要链接编译</li>
-<li>如果只是C文件被修改过，只编译被修改的C文件，并链接目标程序</li>
-<li>如果头文件被修改了，则需要编译引用这几个头文件的C文件，并链接目标程序</li>
+<ul class="lvl-2">
+<li class="lvl-4">如果没有编译过，那所有C文件都要链接编译</li>
+<li class="lvl-4">如果只是C文件被修改过，只编译被修改的C文件，并链接目标程序</li>
+<li class="lvl-4">如果头文件被修改了，则需要编译引用这几个头文件的C文件，并链接目标程序</li>
 </ul>
 </li>
-<li>
+<li class="lvl-2">
 <p>基本规则格式</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment">##目标 ...:依赖 ...</span></span><br><span class="line"><span class="comment">##    命令(前面有tap)</span></span><br><span class="line"> test : a.o b.o</span><br><span class="line">     gcc -o test a.o b.o</span><br><span class="line"> </span><br><span class="line"> a.o : a.c</span><br><span class="line">     gcc -c -o a.o a.c</span><br><span class="line"></span><br><span class="line"> b.o : b.c</span><br><span class="line">     gcc -c -o b.o b.c</span><br></pre></td></tr></table></figure>
 <ol>
-<li>默认情况下, <code>make</code>执行的是Makefile中的第一规则, 即将第一个目标文件作为我们的终极目标文件. 目标文件的依赖可以通过后面的规则来创建</li>
-<li><code>Makefile</code>是按照一个个规则的顺序来执行的, 所以目标可以不是一个文件,  也可以只是一个标签, 我们可以只在里面写普通命令, 这样就相当于一个bash脚本了</li>
+<li class="lvl-5">
+<p>默认情况下, <code>make</code>执行的是Makefile中的第一规则, 即将第一个目标文件作为我们的终极目标文件. 目标文件的依赖可以通过后面的规则来创建</p>
+</li>
+<li class="lvl-5">
+<p><code>Makefile</code>是按照一个个规则的顺序来执行的, 所以目标可以不是一个文件,  也可以只是一个标签, 我们可以只在里面写普通命令, 这样就相当于一个bash脚本了</p>
+</li>
 </ol>
 </li>
 </ul>
 <h4 id="变量">变量</h4>
 <p><strong>变量类型: 环境变量, 自动变量, 默认变量, 自定义变量</strong></p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p>变量命名, 定义与调用:</p>
 <p>命名规则: 类似与正常变量的命名规则.</p>
 <p>定义: <code>var = value</code>, 值可以是一个或多个, 以空格来分开.</p>
 <p>调用: <code>$(var)</code>  or <code>$&#123;var&#125;</code>, 取出变量的值.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>变量赋值</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">VIR_A = A</span><br><span class="line">VIR_B = <span class="variable">$(VIR_A)</span> B</span><br><span class="line">VIR_A = AA</span><br></pre></td></tr></table></figure>
 <p><code>=</code>: 递归赋值,变量的值会是其赋值变量最后的值, 最后<code>VIR_B=AA B</code>,而不是<code>VIR_B=A B</code>.<br>
@@ -2693,7 +2697,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <code>?=</code>: 表示如果变量没有被赋值,则赋值.<br>
 <code>+=</code>: 表示追加赋值, 在原变量后面加值</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>自动变量:</p>
 <p><em>自动变量是存在在规则中的变量, 只在规则中有效</em></p>
 <p><code>$@</code>: 表示规则的目标文件名, 在多目标模式中代表的是触发规则被执行的文件名.</p>
@@ -2708,7 +2712,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>D表示取文件目录</p>
 <p>F表示取文件名</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>环境变量:</p>
 <p>环境变量是在<code>Makefile</code>环境中全局有效的变量, 在不同<code>Makefile</code>中都有效. 是在<code>make</code>前在<code>shell</code>中定义的, 是系统的环境变量.</p>
 <p><code>export val</code>: 可以创建一个环境变量</p>
@@ -2722,7 +2726,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>默认的环境变量更改了之后他的更改后的值就只能在当前文件中使用了</p>
 </blockquote>
 </li>
-<li>
+<li class="lvl-2">
 <p>默认变量:</p>
 <p>默认定义的变量, 如</p>
 <p><code>$(RM)</code>: <code>rm -f</code></p>
@@ -2736,93 +2740,93 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>最外层的<code>Makefile</code>称为总控.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">all:</span></span><br><span class="line">	<span class="variable">$(MAKE)</span> -C <span class="variable">$(CURDIR)</span></span><br><span class="line"><span class="comment">#可以递归调用Makefile文件</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-2">
 <p>变量覆盖: <code>override var = value</code>, 可以覆盖我们在<code>make</code>传参时传入变量的值, 不加不能覆盖.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>判断变量来源: <code>$(origin var)</code>, 表示变量的来源.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>变量传递: <code>export al</code></p>
 </li>
 </ul>
 <h4 id="函数">函数</h4>
 <ol>
-<li>
+<li class="lvl-3">
 <p>字符串处理函数</p>
 <p>字符串处理函数调用格式: <code>$(&lt;function&gt; &lt;arguments&gt;)</code> or <code>$&#123;&lt;function&gt; &lt;arguments&gt;&#125;</code></p>
 <p><code>function</code>: 函数名</p>
 <p><code>arguments</code>: 参数, 参数之间要用<code>,</code>分隔</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-5">
 <p><code>patsubst</code>: 模式字符串替换函数</p>
 <p><code>$(patsubst &lt;pattern&gt;, &lt;replacement&gt;, &lt;text&gt;)</code>  查找<code>text</code>中单词是否符合<code>pattern</code>, 如果匹配则使用<code>replacement</code>替换.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">SRC = main.c test.c</span><br><span class="line">OBJ = <span class="variable">$(<span class="built_in">patsubst</span> %.c, %.o, <span class="variable">$(SRC)</span>)</span> <span class="comment">#意思是将 SRC 中所有的.c文件,替换为.o文件, 赋给OBJ</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"> <span class="comment">#output : main.o test.o</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>subst</code>: 字符串替换函数</p>
 <p><code>$(subst &lt;from&gt;, &lt;to&gt;,&lt;text&gt;)</code> 将字符串中的<code>from</code>变成<code>to</code></p>
    <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OBJ = <span class="variable">$(<span class="built_in">subst</span> oo,ss, faoo fcoo)</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"><span class="comment">#output : fass fcss</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>strip</code>: 去除空格函数</p>
 <p><code>$(strip &lt;text&gt;)</code>, 去掉字符串开头和结尾的空格.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OBJ=<span class="variable">$(<span class="built_in">strip</span>  a    b    c  )</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"> <span class="comment">#output : a b c</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>findstring</code>: 查找字符串函数</p>
 <p><code>$(findstring &lt;find&gt;, &lt;text&gt;)</code>, 查找<code>text</code>中的<code>find</code>, 返回目标字符串</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OBJ=<span class="variable">$(<span class="built_in">findstring</span> is, isa askd sa)</span> <span class="comment">#只要有匹配就输出is</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"> <span class="comment">#output : is</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>filter</code>: 过滤函数</p>
 <p><code>$(filter &lt;pattern&gt;, &lt;text&gt;)</code>, 过滤出符合<code>pattern</code>的字符串, 返回的时过滤后的字符串. <code>pattern</code>可以有多个.</p>
    <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OBJ=<span class="variable">$(<span class="built_in">filter</span> %c %o, a.c b.o c.txt)</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"> <span class="comment">#output : a.c b.o</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>filter-out</code>: 反过滤函数, 与<code>filter</code>相反.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>sort</code>: 排序函数</p>
 <p><code>$(sort &lt;list&gt;)</code>, 将<code>list</code>中的单词升序排序. 返回排列后的字符串.</p>
    <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OBJ=<span class="variable">$(<span class="built_in">sort</span> z, y, y, x)</span></span><br><span class="line"> all:</span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"> <span class="comment">#output : x y, z, #会将list去重</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>word</code>: 取单词函数</p>
 <p><code>$(word &lt;n&gt;, &lt;text&gt;)</code>, 去除<code>text</code>中第<code>n</code>个单词</p>
    <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OBJ=<span class="variable">$(<span class="built_in">word</span> 3, a.c b.c c.c)</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"> <span class="comment">#output : c.c</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li>
+<li class="lvl-3">
 <p>文件名操作函数</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-5">
 <p><code>dir</code>: 取文件目录函数</p>
 <p><code>$(dir &lt;names&gt;)</code>, 取出<code>names</code>中每个单词最后一个<code>/</code>前的内容, 如果没有则返回<code>./</code>.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>notdir</code>: 取文件名函数</p>
 <p><code>$(notdir &lt;names&gt;)</code>, 取最后一个<code>/</code>之后的内容.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>suffix</code>: 取后缀名函数</p>
 <p><code>$(suffix &lt;names&gt;)</code>: 取出各个单词的后缀名, 如果没有则返回为空.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>basename</code>: 取前缀名函数, 如果没有则返回为空.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>addsurfix</code>: 添加后缀函数, 将<code>surfix</code>添加到每个单词的后面, 文件有后缀也会被加上.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>addprefix</code>: 添加前缀函数, 将<code>prefix</code>添加到每个单词的前面.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>join</code>: 链接函数</p>
 <p><code>$(join &lt;list1&gt;, &lt;list2&gt;)</code>, 将<code>list2</code>中的对应位置的单词拼在<code>list1</code>的后面. 多出来的单词保持原样.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>wildcard</code>: 获取匹配模式文件名函数</p>
 <p><code>$(wildcard &lt;pattern&gt;)</code>, 列出所有符合<code>PATTERN</code>的文件.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">objects := <span class="variable">$(<span class="built_in">patsubst</span> %.c,%.o,$(<span class="built_in">wildcard</span> *.c)</span>)<span class="comment">#原本*.c在函数里边会失效</span></span><br><span class="line"> </span><br><span class="line">foo : <span class="variable">$(objects)</span></span><br><span class="line">gcc -o foo <span class="variable">$(objects)</span></span><br><span class="line"><span class="comment">#获取取了当前所有.c文件, 替换为.o文件, 再运用隐晦规则编译.</span></span><br></pre></td></tr></table></figure>
@@ -2833,25 +2837,25 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 </ul>
 </li>
-<li>
+<li class="lvl-3">
 <p>其他函数</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-5">
 <p><code>foreach</code>:</p>
 <p><code>$(foreach &lt;var&gt;, &lt;list&gt;, &lt;text&gt;)</code>, 把参数<code>list</code>中的单词逐一取出放入<code>var</code>所指定的变量中, 然后在执行<code>text</code>所包含的表达式.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">filename=11 22 33 44</span><br><span class="line">files=<span class="variable">$(<span class="built_in">foreach</span> n, <span class="variable">$(filename)</span>, <span class="variable">$(n)</span>.c)</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(files)</span></span><br><span class="line"><span class="comment">#output : 11.c 22.c 33.c 44.c</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>if</code>: 条件选择函数</p>
 <p><code>$(if &lt;condition&gt;, &lt;then-part&gt;, &lt;else-part&gt;)</code>, <code>condition</code>字符串为空为假返回<code>else-part</code>, 不为空为真返回<code>then-part</code>, 可以不包含<code>else-part</code>.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">file = aa</span><br><span class="line">OBJ = <span class="variable">$(<span class="built_in">if</span> <span class="variable">$(file)</span>, <span class="variable">$(file)</span>, main.c)</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(OBJ)</span></span><br><span class="line"><span class="comment">#output : aa</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>call</code>函数</p>
 <p><code>$(call &lt;expr&gt;, &lt;parm1&gt;, &lt;parm2&gt;,...)</code>, <code>call</code>函数可以让我们自己来创建一个新的规则的函数. <code>expr</code>中<code>$(1)</code>, <code>$(2)</code>,…, 会被<code>parm1</code>, <code>parm2</code>, …取代.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">reverse=$(2) $(1)</span><br><span class="line">foo=<span class="variable">$(<span class="built_in">call</span> reverse, aa, bb)</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(foo)</span></span><br><span class="line"><span class="comment">#output : bb aa</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>origin</code>:</p>
 <p><code>$(origin &lt;variable&gt;)</code>, 告诉变量的来源.</p>
 <p>返回值:</p>
@@ -2863,27 +2867,31 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><code>override</code>: 变量是被<code>override</code>变量重新定义的.</p>
 <p><code>automatic</code>: 是一个自动变量.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>shell</code>:</p>
 <p><code>$(shell &lt;shell command&gt;)</code>, 执行<code>shell command</code>, 返回值是命令的返回值.</p>
 <p>shell命令有关:</p>
 <ol>
-<li>在<code>Makefile</code>的规则中基本上都是来调用shell命令来构筑目标.</li>
-<li>在规则中, 每一行命令都是独立的<code>shell</code>环境中执行的. 要命令有所联动的话, 要有换行符使不换行.</li>
+<li class="lvl-8">
+<p>在<code>Makefile</code>的规则中基本上都是来调用shell命令来构筑目标.</p>
+</li>
+<li class="lvl-8">
+<p>在规则中, 每一行命令都是独立的<code>shell</code>环境中执行的. 要命令有所联动的话, 要有换行符使不换行.</p>
+</li>
 </ol>
 </li>
 </ul>
 </li>
 </ol>
 <h4 id="隐晦规则">隐晦规则</h4>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p>目标文件的搜寻: <code>make</code>会优先搜寻本文件夹的文件.</p>
 <ol>
-<li>
+<li class="lvl-5">
 <p><code>VPATH := dir1 dir2 ...</code>: 是变量, 制定路径后编译时会搜寻路径下的所有文件.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>vpath</code>: 是关键字, 有三种用法.</p>
 <p><code>vpath PATTERN DIRECTORIES</code>: <code>PATTERN</code>是搜寻的条件, 当满足条件时搜寻这个文件夹.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">vpath</span> main.c dir <span class="comment">#main.c在dir中搜寻</span></span><br></pre></td></tr></table></figure>
@@ -2895,7 +2903,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>``VAPTH/vpath<code>只是告知</code>make<code>在隐晦推导时的文件搜索, </code>gcc<code>不知道, 所以</code>gcc`命令中也要告知文件路径.</p>
 </blockquote>
 </li>
-<li>
+<li class="lvl-2">
 <p>隐晦规则</p>
 <p>隐晦规则就是系统会自动的完成一些动作. 有些时候不需要给出重建文件的命令名有的时候甚至不需要给出规则.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">vpath</span> %.c src</span><br><span class="line">main : main.o name.o</span><br><span class="line">	gcc main.o name.o -o main</span><br><span class="line"><span class="comment">#这里make自动执行了生成*.o文件的命令</span></span><br></pre></td></tr></table></figure>
@@ -2917,8 +2925,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>在条件表达式中不能使用自动化变量, 自动化变量在规则命令执行时才有效, 更不能将一个完整的条件判断语句分在两个文件中</p>
 </blockquote>
 <h4 id="MAKEFILE中的关键字">MAKEFILE中的关键字</h4>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>include</code>: 和c一样将include的文件的内容复制进来.</p>
 <blockquote>
 <p>行首不能是<code>tab</code>, 不然会将<code>include</code>视为命令来处理.</p>
@@ -2928,12 +2936,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><code>-include</code>: 当找不到文件时, 会继续执行, 只有在不能完成终极目标构建时, 才会报错.</p>
 <p><code>$(MAKECMDGOALS)</code>: 这个是<code>make</code>执行时设置的特殊变量, 记录了命令行参数的终极目标列表.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>define</code>: 定义命令包</p>
 <p>将连续相同的命令合成一条, 减少代码量, 类似于函数</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">define</span> &lt;command-name&gt;</span><br><span class="line">command1 <span class="comment">#命令</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">endef</span> <span class="comment">#结束define</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>.PHONY</code>: 伪目标</p>
 <p><code>make</code>执行规则实现看规则的目标的依赖文件有没有改变, 如果改变了才执行.</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -rf *.o test</span><br></pre></td></tr></table></figure>
@@ -2998,8 +3006,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <a class='next' href='/post/file/'>
           <p class='title'>文件操作<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>文本模式与二进制模式:
-二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同
-文本模式:  在windows上会预处理, 读出时将\r\n转化为\n, 写入时将\n转化为\r\n...</p>
+二进制模式: 程序可以访问文件的每一个字节, 读出数据与文件完全相同文本模式:  在windows上会预处理, 读出时将\r\n转化为\n, 写入时将\n转化为\r\n,...</p>
         </a>
       
     </div>
@@ -3057,7 +3064,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-text">总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAKEFILE%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="toc-text">MAKEFILE的基本规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-text">变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%90%E6%99%A6%E8%A7%84%E5%88%99"><span class="toc-text">隐晦规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-text">条件判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAKEFILE%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">MAKEFILE中的关键字</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAKEFILE%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">MAKEFILE的基本规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%90%E6%99%A6%E8%A7%84%E5%88%99"><span class="toc-number">5.</span> <span class="toc-text">隐晦规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">6.</span> <span class="toc-text">条件判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAKEFILE%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">7.</span> <span class="toc-text">MAKEFILE中的关键字</span></a></li></ol>
     </div>
   </section>
 
@@ -3710,6 +3717,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/","name":"C"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/MAKEFILE/","name":"makefile学习"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"makefile学习","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/MAKEFILE/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/MAKEFILE/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T07:08:43.833Z","articleSection":"C","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

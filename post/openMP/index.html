@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2626,31 +2626,43 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><code>#pragma opm parallel [clause,...]</code></p>
 <p>创建一组线程, 创建的线程包括主线程, 编号为0, 其余线程编号递增.</p>
 <p>设置并行区域的线程数:</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>num_threads(count)</code><strong>子句</strong></p>
 <p><code># pragma omp parallel num_threads (thread_count)</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>omp_set_num_threads (count)</code>函数</p>
 <p>在并行区域前调用此函数可以设定线程的个数</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>计算机环境变量<code>OMP_NUM_THREADS</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p>默认线程数: 计算机逻辑CPU的个数(核数)</p>
 </li>
 </ul>
 <p>并行区域变量的作用域:</p>
 <p><code>共享作用域</code>与<code>私有作用域</code>.</p>
-<ul>
-<li><code>private(list)</code>: 将一个或多个变量设为线程的私有变量, 没有做初始化.</li>
-<li><code>firstprivate(list)</code>: 私有变量, 将变量的值按串行变量的值做初始化.</li>
-<li><code>lastprivate(list)</code>: 对私有变量的终结操作, 将并行变量的值赋回串行变量.</li>
-<li><code>share(list)</code>: 将变量声明为共享变量.</li>
-<li><code>reuction(&lt;operator&gt; : &lt;variable list&gt;)</code>: 创建临时变量<code>&lt;variable list&gt;</code>, 在并行区域结束之后将所有变量合并, <code>operator</code>约束变量所进行的计算操作.</li>
-<li><code>default(share|none|private)</code>: 设定串行变量在并行中的默认属性. <code>none</code>时每个串行变量都要指定在并行中的属性. 默认属性是<code>share</code></li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>private(list)</code>: 将一个或多个变量设为线程的私有变量, 没有做初始化.</p>
+</li>
+<li class="lvl-2">
+<p><code>firstprivate(list)</code>: 私有变量, 将变量的值按串行变量的值做初始化.</p>
+</li>
+<li class="lvl-2">
+<p><code>lastprivate(list)</code>: 对私有变量的终结操作, 将并行变量的值赋回串行变量.</p>
+</li>
+<li class="lvl-2">
+<p><code>share(list)</code>: 将变量声明为共享变量.</p>
+</li>
+<li class="lvl-2">
+<p><code>reuction(&lt;operator&gt; : &lt;variable list&gt;)</code>: 创建临时变量<code>&lt;variable list&gt;</code>, 在并行区域结束之后将所有变量合并, <code>operator</code>约束变量所进行的计算操作.</p>
+</li>
+<li class="lvl-2">
+<p><code>default(share|none|private)</code>: 设定串行变量在并行中的默认属性. <code>none</code>时每个串行变量都要指定在并行中的属性. 默认属性是<code>share</code></p>
+</li>
 </ul>
 <p>所有<code>list</code>中的变量是要在串行程序中先前声明过的</p>
 <p><strong>临界区指令:</strong></p>
@@ -2797,7 +2809,7 @@ int pthread_create(pthre...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#openMP"><span class="toc-text">openMP</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#openMP"><span class="toc-number">1.</span> <span class="toc-text">openMP</span></a></li></ol>
     </div>
   </section>
 
@@ -3450,6 +3462,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/","name":"C"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/并行/","name":"并行"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/openMP/","name":"openMP"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"openMP","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/openMP/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/openMP/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T06:40:59.529Z","articleSection":"C","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

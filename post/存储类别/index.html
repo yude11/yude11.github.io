@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2620,25 +2620,49 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
  所以在for和while中可以定义与外部变量一样的同名变量, 为循环中的局部变量<br>
  块: 循环、分支结构、函数体</p>
 <p><em><strong>链接</strong></em>:</p>
-<ul>
-<li>外部链接: 外部链接变量可以在多文件程序中使用</li>
-<li>内部链接: 内部链接变量只能在一个翻译单元中使用(一个源文件以及其包含的头文件)</li>
-<li>无链接: 变量是其定义它们的块、函数或原型私有</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>外部链接: 外部链接变量可以在多文件程序中使用</p>
+</li>
+<li class="lvl-2">
+<p>内部链接: 内部链接变量只能在一个翻译单元中使用(一个源文件以及其包含的头文件)</p>
+</li>
+<li class="lvl-2">
+<p>无链接: 变量是其定义它们的块、函数或原型私有</p>
+</li>
 </ul>
 <p><em><strong>作用域</strong></em>(scope): 表示了程序的那些部分可以使用此对象</p>
-<ul>
-<li>块作用域: 只能在当前代码块中使用    --&gt;局部变量</li>
-<li>文件作用域: 内部链接的文件或外部链接的文件的作用域, 只能在当前翻译单元中使用(当前源文件以及其包含的头文件)    --&gt; 全局变量</li>
-<li>全局作用域: 外部链接的文件的作用域, 能在所有文件中使用</li>
-<li>函数作用域: 仅用于goto语句的标签, 用于区分不同块中同名标签</li>
-<li>函数原型作用域: 用于函数原型中的形参名, 范围是从形参定义处到原型声明结束</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>块作用域: 只能在当前代码块中使用    --&gt;局部变量</p>
+</li>
+<li class="lvl-2">
+<p>文件作用域: 内部链接的文件或外部链接的文件的作用域, 只能在当前翻译单元中使用(当前源文件以及其包含的头文件)    --&gt; 全局变量</p>
+</li>
+<li class="lvl-2">
+<p>全局作用域: 外部链接的文件的作用域, 能在所有文件中使用</p>
+</li>
+<li class="lvl-2">
+<p>函数作用域: 仅用于goto语句的标签, 用于区分不同块中同名标签</p>
+</li>
+<li class="lvl-2">
+<p>函数原型作用域: 用于函数原型中的形参名, 范围是从形参定义处到原型声明结束</p>
+</li>
 </ul>
 <p><em><strong>储存期</strong></em>(storage duration): 生命周期, 指对象在内存中保留了多久的时间</p>
-<ul>
-<li>静态储存期: 被声明后, 在程序运行期间一直存在</li>
-<li>线程储存期: 用于并发程序设计, 被声明后, 在线程运行期间一直存在(以关键字<code>_Thread_local</code>声明的对象时, 每个线程都获得该变量的私有备份)</li>
-<li>自动储存期: 块的开始与结束(花括号的开始与结束)</li>
-<li>动态分配储存期:</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>静态储存期: 被声明后, 在程序运行期间一直存在</p>
+</li>
+<li class="lvl-2">
+<p>线程储存期: 用于并发程序设计, 被声明后, 在线程运行期间一直存在(以关键字<code>_Thread_local</code>声明的对象时, 每个线程都获得该变量的私有备份)</p>
+</li>
+<li class="lvl-2">
+<p>自动储存期: 块的开始与结束(花括号的开始与结束)</p>
+</li>
+<li class="lvl-2">
+<p>动态分配储存期:</p>
+</li>
 </ul>
 <h4 id="auto自动变量">auto自动变量</h4>
 <p>块内部声明:<code>auto type name;</code><br>
@@ -2654,24 +2678,16 @@ auto变量具有自动存储期、块作用域及无链接.<br>
 寄存器变量的其他特性与自动变量类似.</p>
 <h4 id="static静态变量">static静态变量</h4>
 <ol>
-<li>
-<p>块作用域的静态变量<br>
-再块内部声明:<code>static type name;</code><br>
-指函数函数体内部声明的静态变量<br>
-是具有静态储存期、块作用域的局部变量<br>
-只会在第一次函数调用时分配内存, 函数结束后不会释放内存, 下一次调用函数后会继续沿用上一次的值, 不能做函数的形参<br>
-默认会初始化为0</p>
+<li class="lvl-3">
+<p>块作用域的静态变量再块内部声明:<code>static type name;</code><br>
+指函数函数体内部声明的静态变量是具有静态储存期、块作用域的局部变量只会在第一次函数调用时分配内存, 函数结束后不会释放内存, 下一次调用函数后会继续沿用上一次的值, 不能做函数的形参默认会初始化为0</p>
 </li>
-<li>
-<p>外部链接的静态变量<br>
-在块的外部声明:<code>type name</code> -&gt;内部链接<br>
-在块外声明, 引入外部变量: <code>extern type name;</code> (<code>extren</code>关键字就是指让编译器寻找当前作用域之外的变量)-&gt;外部链接<br>
-具有文件作用域、外部链接、和静态存储期.<br>
+<li class="lvl-3">
+<p>外部链接的静态变量在块的外部声明:<code>type name</code> -&gt;内部链接在块外声明, 引入外部变量: <code>extern type name;</code> (<code>extren</code>关键字就是指让编译器寻找当前作用域之外的变量)-&gt;外部链接具有文件作用域、外部链接、和静态存储期.<br>
 不能被其他变量赋值来初始化, 初始化默认为0</p>
 </li>
-<li>
-<p>内部链接的静态变量<br>
-在块外声明: <code>static type name;</code><br>
+<li class="lvl-3">
+<p>内部链接的静态变量在块外声明: <code>static type name;</code><br>
 具有文件作用域、内部链接、静态储存期。</p>
 </li>
 </ol>
@@ -2684,13 +2700,13 @@ auto变量具有自动存储期、块作用域及无链接.<br>
 只能被当前文件访问</p>
 <h4 id="inline内联函数">inline内联函数</h4>
 <ol>
-<li>在c++中的新特性(面向对象)
-<ul>
-<li>类的static成员<br>
-储存在全局数据区,在程序开始时分配空间.<br>
+<li class="lvl-3">
+<p>在c++中的新特性(面向对象)</p>
+<ul class="lvl-2">
+<li class="lvl-5">类的static成员储存在全局数据区,在程序开始时分配空间.<br>
 是所有类成员共享的变量
-<ul>
-<li>使用<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> _s;<span class="comment">//在类里面声明</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> A::_s=<span class="number">0</span>;   <span class="comment">//定义与初始化</span></span><br></pre></td></tr></table></figure></li>
+<ul class="lvl-4">
+<li class="lvl-8">使用<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> _s;<span class="comment">//在类里面声明</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> A::_s=<span class="number">0</span>;   <span class="comment">//定义与初始化</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -2754,16 +2770,16 @@ auto变量具有自动存储期、块作用域及无链接.<br>
 ^ 按位异或运算
 
 掩码:
-按位运算符通常用于掩码
-掩码是指的是一些设置为开(1)或关(0)的...</p>
+按位运算符通常用于掩码掩码是指的是一些设置为开(1)或关(0)的位...</p>
         </a>
       
       
-        <a class='next' href='/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/'>
-          <p class='title'>正则表达式<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>正则表达式: 是用于匹配和操作文本的强大工具
-https://deerchao.cn/tutorials/regex/regex.htm #教程
-https://regex101.com/   ...</p>
+        <a class='next' href='/post/Git/'>
+          <p class='title'>Gits<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Git教程  (菜鸟教程)
+结构介绍
+git的版本管理结构是一个有向图，每个版本是图中的一个节点，每个节点间用有向边来连接。主分支master: 是项目的主要方向.
+从主分支可以有多个branc...</p>
         </a>
       
     </div>
@@ -2821,7 +2837,7 @@ https://regex101.com/   ...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto%E8%87%AA%E5%8A%A8%E5%8F%98%E9%87%8F"><span class="toc-text">auto自动变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#register%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E9%87%8F"><span class="toc-text">register寄存器变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#static%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-text">static静态变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0"><span class="toc-text">外部函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0"><span class="toc-text">内部函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-text">inline内联函数</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto%E8%87%AA%E5%8A%A8%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">auto自动变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#register%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">register寄存器变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#static%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">static静态变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">外部函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">内部函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text">inline内联函数</span></a></li></ol>
     </div>
   </section>
 
@@ -3474,6 +3490,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/","name":"C"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/存储类别/","name":"存储类别"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"存储类别","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T07:08:50.425Z","articleSection":"C","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

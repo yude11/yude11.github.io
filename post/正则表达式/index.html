@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2614,8 +2614,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <a target="_blank" rel="noopener" href="https://deerchao.cn/tutorials/regex/regex.htm">https://deerchao.cn/tutorials/regex/regex.htm</a> #教程</p>
 <p><a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a>      #匹配练习工具</p>
 <p>正则表达式是由普通字符(a-z等)以及特殊字符(元字符)组成的文字模式,格式<code>/pattern/flags</code></p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p>普通字符:包括所有大小写字母,所有数字标点符号以及一些其他符号<br>
 <code>[ABC]</code>: 匹配…中所有的字符<br>
 <code>[^ABC]</code>: 匹配[…]中以外的字符<br>
@@ -2625,14 +2625,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <code>\w</code>: 匹配字母,数字,下划线,相当于[A-Za-z0-9_]<br>
 <code>\d</code>: 匹配数字,相当于[0-9]</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>修饰符: i,g,m,s<br>
 <code>g</code>: 查找字符串中所有的匹配项 #/haha/g 匹配 “nihao haha11haha” 则会匹配到两个haha,不然空格就结束匹配<br>
 <code>i</code>: 不区分大小写匹配<br>
-<code>m</code>: 多行匹配,使边界字符^和$匹配每一行的开头与结尾,搭配^使g可以多行匹配<br>
+<code>m</code>: 多行匹配,使边界字符<sup>和$匹配每一行的开头与结尾,搭配</sup>使g可以多行匹配<br>
 <code>s</code>: 使.可以匹配换行符  #/haha./s 匹配 “haha\n” 没加s的话匹配不了</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>元字符:<br>
 <code>*</code>: 匹配前面一个字符0-n次<br>
 <code>+</code>: 匹配前面一个字符1-n次<br>
@@ -2649,7 +2649,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <code>\w</code>: 匹配字母数字下划线<br>
 <code>\W</code>: \w以外字符</p>
 </li>
-<li>
+<li class="lvl-2">
 <p>贪婪/懒惰匹配<br>
 <code>&lt;.+&gt;</code>: 默认贪婪匹配任意字符 #尽可能匹配更多的字符,这会将所有匹配成一个字符串<br>
 <code>&lt;.+?&gt;</code>: 懒惰匹配任意字符 #这样会将字符一个一个匹配</p>
@@ -2701,20 +2701,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB/'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>存储类别</p>
-          <p class='content'>关键字: auto、extern、static、register、const、volatile、restricted、_Thread_local、_Atomic
-函数: malloc()、cal...</p>
+        <a class='prev' href='/post/Git/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Gits</p>
+          <p class='content'>Git教程  (菜鸟教程)
+结构介绍
+git的版本管理结构是一个有向图，每个版本是图中的一个节点，每个节点间用有向边来连接。主分支master: 是项目的主要方向.
+从主分支可以有多个branc...</p>
         </a>
       
       
-        <a class='next' href='/post/Git/'>
-          <p class='title'>Gits<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Git教程  (菜鸟教程)
-结构介绍
-git的版本管理结构是一个有向图，每个版本是图中的一个节点，每个节点间用有向边来连接。
-主分支master: 是项目的主要方向.
-从主分支可以有多个bran...</p>
+        <a class='next' href='/post/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/'>
+          <p class='title'>PA中零散知识<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>C语言相关
+
+
+GCC编译器的语句表达式
+AM_INPUT_KEYBRD_T ev = (&#123;	AM_INPUT_KEYBRD_T __io_param; 	ioe_read(AM_IN...</p>
         </a>
       
     </div>
@@ -3415,6 +3417,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/工具/","name":"工具"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/正则表达式/","name":"正则表达式"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"正则表达式","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T07:09:41.325Z","articleSection":"工具","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

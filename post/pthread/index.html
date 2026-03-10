@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2620,38 +2620,38 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>头文件:<code>pthread.h</code></p>
 <p><strong>线程操作</strong>:</p>
 <p>线程的创建:</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>pthread_create</code>: 创建线程</p>
 <p><code>int pthread_create(pthread_t* thread_p, const pthread_attr_t* attr_p, void* (*start_routine)(void *), void* arg_p)</code></p>
 <p><code>thread_p</code>是线程标识符, 由此函数调用后赋予线程的编号, <code>attr_p</code>表示线程的属性, <code>NULL</code>表示默认属性, <code>start_routine</code>线程开始运行的函数, <code>arg</code>是<code>start_routine</code>的参数.</p>
 </li>
 </ul>
 <p>线程的阻塞:</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>pthread_join</code>: 阻塞线程</p>
 <p><code>int pthrea_join(pthrea_t thread, void** ret_val_p)</code></p>
 <p><code>thread</code>调用函数的线程会等待<code>thread</code>线程结束之后才运行.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>pthread_detach</code>: 将线程设为<code>detached</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>pthread_attr_setdetachstate</code>:</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>pthread_attr_getdetachstate</code>:</p>
 </li>
 </ul>
 <p>线程的结束:</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>pthread_exit</code>: 结束线程并释放资源</p>
 <p><code>void pthread_exit(void* retval)</code></p>
 <p><code>retval</code>由函数赋值表示函数退出的状态</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>pthread_cancel</code>: 结束其他线程</p>
 <p><code>int pthread_canel(phtread_t thread)</code></p>
 <p><code>thread</code>表示同一进程的线程的编号, 结束此进程. 成功返回0, 失败返回错误编号.</p>
@@ -2659,101 +2659,135 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </ul>
 <p>堆栈管理(<code>Stack Managemenrt</code>):</p>
 <p><code>POSIX</code>标准没有规定一个线程的堆栈大小。安全可移植的程序不会依赖于具体实现默认的堆栈限制，而是显式地调用<code>pthread_attr_setstacksize</code>来分配足够的堆栈空间</p>
-<ul>
-<li><code>pthread_attr_getstacksize</code></li>
-<li><code>pthread_attr_setstacksize</code></li>
-<li><code>pthread_attr_getstacksize</code></li>
-<li><code>pthread_attr_setstackaddr</code></li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>pthread_attr_getstacksize</code></p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_attr_setstacksize</code></p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_attr_getstacksize</code></p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_attr_setstackaddr</code></p>
+</li>
 </ul>
 <p>其他:</p>
-<ul>
-<li><code>pthread_self</code>: 返回<code>threadid</code></li>
-<li><code>pthread_equal</code>: 比较两个线程的ID, 不相同返回0, 相同返回非零.</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>pthread_self</code>: 返回<code>threadid</code></p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_equal</code>: 比较两个线程的ID, 不相同返回0, 相同返回非零.</p>
+</li>
 </ul>
 <p><strong>互斥锁(<code>Mutex</code>):</strong></p>
 <p><code>Mutex</code>常来用来保护共享资源, 防止多个线程同时更新一个数据.</p>
 <p>使用互斥锁:</p>
 <ol>
-<li>创建一个互斥锁, 即声明一个<code>pthread_mutex_t</code>类型数据, 并初始化.</li>
-<li>多个线程尝试访问互斥锁, 最终只有一个线程锁定互斥锁, 使用完后释放.</li>
-<li>最后调用<code>pthread_mutex_destory</code>销毁互斥锁.</li>
+<li class="lvl-3">
+<p>创建一个互斥锁, 即声明一个<code>pthread_mutex_t</code>类型数据, 并初始化.</p>
+</li>
+<li class="lvl-3">
+<p>多个线程尝试访问互斥锁, 最终只有一个线程锁定互斥锁, 使用完后释放.</p>
+</li>
+<li class="lvl-3">
+<p>最后调用<code>pthread_mutex_destory</code>销毁互斥锁.</p>
+</li>
 </ol>
 <p>互斥锁初始化: 互斥锁只有在初始化之后才能使用.</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p>常量赋值的方法:</p>
 <p><code>pthread_mutex_t mymutex = PTHREAD_MUTEX_INITIALIZER;</code></p>
 <p><code>PTHREAD_MUTEX_INITIALIZER</code>是预定义的一个常量.</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>pthread_mutex_init</code></p>
 </li>
 </ul>
 <p>互斥锁销毁:</p>
-<ul>
-<li><code>pthread_mutex_destory</code></li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>pthread_mutex_destory</code></p>
+</li>
 </ul>
 <p>互斥锁锁定与解锁:</p>
-<ul>
-<li><code>pthread_mutex_lock</code></li>
-<li><code>pthread_mutex_trylock</code></li>
-<li><code>pthread_mutex_unlock</code></li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>pthread_mutex_lock</code></p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_mutex_trylock</code></p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_mutex_unlock</code></p>
+</li>
 </ul>
 <p><strong>条件变量</strong>:</p>
 <p>互斥锁只有两种状态, 限制了它的用途. 条件变量允许线程在阻塞是等待另一个线程发送的信号, 当收到信号后, 阻塞的线程被唤醒并试图锁定与之相关的互斥锁. 条件变量与互斥锁结合使用.</p>
 <p>条件变量的声明与初始化</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p>常量赋值的方法:</p>
 <p><code>pthread_cond_t myconvar = PTHREAD_COND_INITIALIZER;</code></p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>pthread_cond_init</code></p>
 </li>
 </ul>
 <p>条件变量销毁:</p>
-<ul>
-<li><code>pthread_cond_destory</code></li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>pthread_cond_destory</code></p>
+</li>
 </ul>
 <p>相关函数:</p>
-<ul>
-<li><code>pthread_cond_wait</code>: 阻塞调用它的线程, 直到收到某个信号.</li>
-<li><code>pthread_cond_signal</code></li>
-<li><code>pthread_cond_broadcast</code></li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>pthread_cond_wait</code>: 阻塞调用它的线程, 直到收到某个信号.</p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_cond_signal</code></p>
+</li>
+<li class="lvl-2">
+<p><code>pthread_cond_broadcast</code></p>
+</li>
 </ul>
 <p><strong>信号量<code>semaphore</code></strong></p>
 <p>头文件: <code>semaphore.h</code></p>
 <p>信号量初始化:</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>sem_init</code></p>
 <p><code>int sem_init(sem_t * sem, int pshared, unsigned int value)</code></p>
 <p><code>sem</code>信号量对象, <code>pshare</code>是否在进程中共享, 0为线程共享, 非零为进程共享, <code>value</code>信号量的初值.</p>
 </li>
 </ul>
 <p>信号量销毁:</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>sem_destory</code></p>
 <p><code>int sem_detory(sem_t *sem)</code></p>
 <p>销毁前信号量必须初始化</p>
 </li>
 </ul>
 <p>P/V操作:</p>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>sem_wait</code>: P操作</p>
 <p><code>int sem_wait(sem_t *sem)</code></p>
 <p>将信号量减一, 如果信号量小于0, 将线程阻塞</p>
 </li>
-<li>
+<li class="lvl-2">
 <p><code>sem_post</code>: V操作</p>
 <p>将信号量加一, 如果信号量大于0, 唤醒线程.</p>
 </li>
 </ul>
 <h4 id="补充">补充</h4>
-<ul>
-<li>
+<ul class="lvl-0">
+<li class="lvl-2">
 <p><code>pthread_attr_t</code>: 表示线程的属性, 是一个结构体变量.</p>
 <p><code>jionable</code>(可结合的)和<code>detatched</code>(分离的):</p>
 <p><code>jionable</code>: 线程可以被其他线程收回资源和杀死. 在被回收之前它的资源是不会释放的(如栈).</p>
@@ -2880,7 +2914,7 @@ directive_name指...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pthread"><span class="toc-text">Pthread</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-text">补充</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pthread"><span class="toc-number">1.</span> <span class="toc-text">Pthread</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">1.2.</span> <span class="toc-text">补充</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -3533,6 +3567,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/","name":"C"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/C/并行/","name":"并行"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/pthread/","name":"Pthread"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Pthread","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/pthread/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/pthread/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T06:41:03.805Z","articleSection":"C","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

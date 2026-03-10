@@ -1879,7 +1879,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773137150775),
+    lastupdate: new Date(1773144454213),
     sidebar: {
       for_page: ["blogger","category","webinfo"],
       for_post: ["toc"],
@@ -2612,71 +2612,81 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div id="post-body" itemprop="articleBody">
     <h4 id="C语言相关">C语言相关</h4>
 <ol>
-<li>
+<li class="lvl-3">
 <p><code>GCC编译器</code>的<code>语句表达式</code></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">AM_INPUT_KEYBRD_T ev = (&#123;</span><br><span class="line">	AM_INPUT_KEYBRD_T __io_param; </span><br><span class="line">	ioe_read(AM_INPUT_KEYBRD, &amp;__io_param);</span><br><span class="line">	__io_param;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这里利用<code>GCC编译器</code>的<code>语句表达式</code>(<code>Statement Expressions</code>)特性, 允许在表达式内部执行多条语句, 并返回最后一条语句的值.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>结构体赋值</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*cfg = (AM_GPU_CONFIG_T) &#123;</span><br><span class="line">    .present = <span class="literal">true</span>, .has_accel = <span class="literal">false</span>,</span><br><span class="line">    .width = <span class="number">0</span>, .height = <span class="number">0</span>,</span><br><span class="line">    .vmemsz = <span class="number">0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>给一个结构体赋值, 中间的强制类型转换本来应该是多余的但是在PA中删掉会报错.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>宏</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> AM_DEVREG(id, reg, perm, ...) \</span></span><br><span class="line"><span class="meta">  enum &#123; AM_##reg = (id) &#125;; \</span></span><br><span class="line"><span class="meta">  typedef struct &#123; __VA_ARGS__; &#125; AM_##reg##_T;</span></span><br><span class="line"></span><br><span class="line">AM_DEVREG( <span class="number">1</span>, UART_CONFIG,  RD, <span class="type">bool</span> present);</span><br><span class="line"><span class="comment">//展开</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> &#123;</span>AM_UART_CONFIG = (<span class="number">1</span>)&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span> <span class="type">bool</span> present; &#125; AM_UART_CONFIG_T;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-5">
 <p><code>##</code>: 标记粘贴(token-pasting)</p>
 <p>应该是有<code>##</code>处将后边的指代为变量替换, 如果前后都有就替换中间的.</p>
 </li>
 </ul>
 </li>
-<li>
+<li class="lvl-3">
 <p><code>sizeof</code></p>
 <p>对于动态分配的变量的大小, 是实际占用的大小, 还是已经占用的大小.</p>
 <p><code>sizeof</code>是一个运算符, 返回的结果是变量类型本身的大小, 所以对于指针返回的是8</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>函数索引表</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> *lut[<span class="number">128</span>] = &#123;</span><br><span class="line">  [AM_TIMER_CONFIG] = __am_timer_config,  <span class="comment">//`[]`是c语言中数组赋值的方法,`AM_...`应该是枚举值代表序号</span></span><br><span class="line">  [AM_TIMER_RTC   ] = __am_timer_rtc,</span><br><span class="line">  [AM_TIMER_UPTIME] = __am_timer_uptime,</span><br><span class="line">  [AM_INPUT_CONFIG] = __am_input_config,</span><br><span class="line">  [AM_INPUT_KEYBRD] = __am_input_keybrd,</span><br><span class="line">  [AM_GPU_CONFIG  ] = __am_gpu_config,</span><br><span class="line">  [AM_GPU_FBDRAW  ] = __am_gpu_fbdraw,</span><br><span class="line">  [AM_GPU_STATUS  ] = __am_gpu_status,</span><br><span class="line">  [AM_UART_CONFIG ] = __am_uart_config,</span><br><span class="line">  [AM_AUDIO_CONFIG] = __am_audio_config,</span><br><span class="line">  [AM_AUDIO_CTRL  ] = __am_audio_ctrl,</span><br><span class="line">  [AM_AUDIO_STATUS] = __am_audio_status,</span><br><span class="line">  [AM_AUDIO_PLAY  ] = __am_audio_play,</span><br><span class="line">  [AM_DISK_CONFIG ] = __am_disk_config,</span><br><span class="line">  [AM_DISK_STATUS ] = __am_disk_status,</span><br><span class="line">  [AM_DISK_BLKIO  ] = __am_disk_blkio,</span><br><span class="line">  [AM_NET_CONFIG  ] = __am_net_config,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建了一个无符号指针数组.</li>
-<li>初始化: 使用<code>[索引] = 值</code>的方法, 为数组中指定位置赋值.  --&gt; 这种方法必须按照顺序来, 如果有空的, <strong>跳过的会被赋空值</strong>.</li>
-<li><code>索引</code>是用枚举值来表示的, 用来使每个索引具有意义.</li>
-<li>将函数指针赋给变量, 这样就可以通过数组来选择调用不同函数.</li>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p>创建了一个无符号指针数组.</p>
+</li>
+<li class="lvl-5">
+<p>初始化: 使用<code>[索引] = 值</code>的方法, 为数组中指定位置赋值.  --&gt; 这种方法必须按照顺序来, 如果有空的, <strong>跳过的会被赋空值</strong>.</p>
+</li>
+<li class="lvl-5">
+<p><code>索引</code>是用枚举值来表示的, 用来使每个索引具有意义.</p>
+</li>
+<li class="lvl-5">
+<p>将函数指针赋给变量, 这样就可以通过数组来选择调用不同函数.</p>
+</li>
 </ul>
 </li>
-<li>
+<li class="lvl-3">
 <p>函数指针</p>
 </li>
-<li>
+<li class="lvl-3">
 <p><code>void</code>指针</p>
 </li>
-<li>
+<li class="lvl-3">
 <p><code>\b</code>: 退格转义字符, 将当前输入光标后退一格, 不会删除先前输出的内容, 只会在当前行回退</p>
 </li>
-<li>
+<li class="lvl-3">
 <p><code>elf文件</code>的结构与解析</p>
 </li>
-<li>
+<li class="lvl-4">
 <p>关于在头文件中<code>&quot;定义&quot;变量</code></p>
 <p><code>static变量</code>:</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-6">
 <p>如果在头文件中<code>&quot;定义&quot;</code>一个未初始化的变量, 编译器会将该<code>&quot;定义&quot;</code>视为<code>声明</code>, 当被<code>include</code>到源文件后, 会为每一个源文件生成一个变量实体.</p>
 </li>
-<li>
+<li class="lvl-6">
 <p>如果直接定义一个变量(有赋值), 头文件中的变量实体会给予多个源文件造成重定义.</p>
 </li>
 </ul>
 <p><code>一般变量</code>:</p>
-<ul>
-<li>都会有重定义的现象</li>
+<ul class="lvl-2">
+<li class="lvl-6">
+<p>都会有重定义的现象</p>
+</li>
 </ul>
 <p>所以<strong>不要在头文件中定义变量</strong></p>
 </li>
-<li>
+<li class="lvl-4">
 <p><code>asm</code>关键字:</p>
 <p>基本语法: <code>asm(&quot;assembly code&quot;);</code></p>
 <p><code>assembly code</code>汇编代码</p>
@@ -2684,37 +2694,41 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p><code>output</code>: 表示输出, <code>input</code>: 表示输入, <code>clobbers</code>: 告诉编译器参数中的寄存器会被改变.</p>
 <p><code>%0</code>,<code>%1</code>等表示第一个第二个参数, 空的参数不算.</p>
 </li>
-<li>
+<li class="lvl-4">
 <p><code>_etext</code>,<code>_edata</code>,<code>_end</code>:</p>
 <p><code>_etext</code>: 表示<code>text</code>段的末尾</p>
 <p><code>_edata</code>: 表示<code>data</code>段的末尾</p>
 <p><code>_end</code>: 表示<code>bss</code>段的末尾, <code>_end</code>就表示了程序数据区的末尾<code>program break</code>也是堆区<code>heap</code>的开始. 所以<code>malloc</code>等内存分配函数是在<code>_end</code>的基础上进行内存分配的.</p>
-<ul>
-<li>在C语言里使用: <code>extern char _end</code> -&gt; <code>char</code>可能就是为了保持格式, 没有什么用.</li>
-<li>取出它的值: <code>&amp;_end</code></li>
+<ul class="lvl-2">
+<li class="lvl-6">
+<p>在C语言里使用: <code>extern char _end</code> -&gt; <code>char</code>可能就是为了保持格式, 没有什么用.</p>
+</li>
+<li class="lvl-6">
+<p>取出它的值: <code>&amp;_end</code></p>
+</li>
 </ul>
 <p>这三个是符号表里的<strong>符号</strong>, 并不是常规意义上的变量:</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-6">
 <p>对于常规变量:</p>
 <p>在编译器编译时会为变量<strong>分配空间</strong>, 并在符号表里面创建变量的符号, 往符号中写入变量的<strong>地址</strong>.</p>
 <p>对于常规变量的取址<code>&amp;</code>, 就是取出当前变量符号对应的变量地址, 在对应地址中对应变量的值.</p>
 </li>
-<li>
+<li class="lvl-6">
 <p>对于<code>_end</code>等:</p>
 <p>编译器不会为它们分配空间, 它们符号表所对应的值就是我们想要的地址.</p>
 <p>所以取址就是取出它们的值.</p>
 </li>
 </ul>
 </li>
-<li>
+<li class="lvl-4">
 <p><code>fscanf</code>:</p>
 <p><code>fscanf</code>在读取文件时, 先会将文件部分载入缓冲区, 再将缓冲区的数据存入变量中, 当缓冲区数据不足时会将剩余数据存入变量中, 再更新缓冲区, 之后继续读取文件.</p>
 </li>
 </ol>
 <h4 id="汇编相关">汇编相关:</h4>
 <ol>
-<li>
+<li class="lvl-3">
 <p>riscv32寄存器:</p>
 <p>通用寄存器: 程序员在编程时可以随意使用的寄存器, 寄存器的功能没有提前定义.</p>
 <p><img src="D:%5CCodeField%5CC++_Code%5Clearn%5Cpic%5Criscv32_register.png" class="lazyload" data-srcset="D:%5CCodeField%5CC++_Code%5Clearn%5Cpic%5Criscv32_register.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="riscv32_registers"></p>
@@ -2723,14 +2737,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </ol>
 <h4 id="PA相关">PA相关</h4>
 <ol>
-<li>
+<li class="lvl-3">
 <p><code>nemu</code>与<code>abstract machine</code>:</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-5">
 <p><code>nemu</code>: 一款经过简化的全系统模拟器(Emulator)</p>
 <p><code>nemu</code>模拟了出一套完整的计算机硬件, 有: <code>cpu</code>(Controller and ALU), <code>memory</code>, <code>device</code>(Input and Output)</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>AM</code>: 将使用计算机的各种需求收集起来, 抽象成的各种<code>API</code></p>
 <p><code>AM</code> = <code>TRM</code> + <code>IOE</code> + <code>CTE</code> + <code>VME</code> + <code>MPE</code></p>
 <p><code>运行时环境</code>: 使程序正常运行所要提供的环境, 包括加载, 销毁程序, 以及各种动态链接库等等</p>
@@ -2739,76 +2753,76 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </ul>
 <p><code>(在NEMU中)实现硬件功能  --&gt; (在AM中)提供运行环境 --&gt; (在APP层)运行程序</code></p>
 </li>
-<li>
+<li class="lvl-3">
 <p>设备访问:</p>
 <p>外界访问设备的API: <code>io_read</code>, <code>io_write</code></p>
 <p>AM对内存访问的封装: <code>inl</code>, <code>outl</code>…</p>
 <figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">访存过程:(内存映射)</span><br><span class="line">io_read/io_write --&gt; ioe_read/ioe_write --&gt; inl/outl... --&gt; vaddr_read --&gt;padder_read --&gt; mmio_read --&gt; map_read --&gt; device(callback_func)</span><br><span class="line"></span><br><span class="line">1.ioe_raed通过访问设备的寄存器, 来获得信息.</span><br><span class="line">2.寄存器通过设备的地址来访问内存(inl/outl),具体在第*3*点</span><br><span class="line">3.在内存访问时, 如果在内存内访问内存, 不再内存内访问对应设备</span><br><span class="line">4.使用设备通过对应设备的回调函数</span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-3">
 <p><code>*(volatile uint32_t *)addr;</code>: 在<code>inl</code>函数中返回值是这个.</p>
 <p>将参数<code>addr</code>强制类型转换为指针, 此时指针的内容为<code>addr</code>, 就能取出指向对应地址空间的值.</p>
 <p>这个指针的取值操作会在指令中体现, 最后调用<code>nemu</code>中内存操作的函数.</p>
 <p>所以是在指令中调用<code>nemu</code>的功能, <code>nemu</code>确实是在模拟出了计算机的硬件.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>关于显示设备的访问:</p>
-<ul>
-<li>在<code>init_monitor</code>时, 会<code>init_device</code>, 再<code>init_vga</code>, 在初始化<code>vgactl_port_base</code>零号存长和宽, 再映射到<code>maps</code>数组里.初始化<code>vmem</code>, 映射到<code>maps</code>中. 每个寄存器有一个端口地址(<code>addr</code>), 和实际的存储地址(<code>space</code>).</li>
-<li>在<code>video.c</code>中产生<code>color_buf</code>数组, 通过<code>io_write</code>传入设备中调用<code>__am_gpu_fbdraw</code>, 在图像缓冲区中写入数据.</li>
-<li>在每次指令执行完后, 调用<code>device_update</code>, 如果缓冲区改变<code>sync</code>为<code>1</code>, 调用<code>vga_update_screen</code>更新屏幕.</li>
+<ul class="lvl-2">
+<li class="lvl-5">在<code>init_monitor</code>时, 会<code>init_device</code>, 再<code>init_vga</code>, 在初始化<code>vgactl_port_base</code>零号存长和宽, 再映射到<code>maps</code>数组里.初始化<code>vmem</code>, 映射到<code>maps</code>中. 每个寄存器有一个端口地址(<code>addr</code>), 和实际的存储地址(<code>space</code>).</li>
+<li class="lvl-5">在<code>video.c</code>中产生<code>color_buf</code>数组, 通过<code>io_write</code>传入设备中调用<code>__am_gpu_fbdraw</code>, 在图像缓冲区中写入数据.</li>
+<li class="lvl-5">在每次指令执行完后, 调用<code>device_update</code>, 如果缓冲区改变<code>sync</code>为<code>1</code>, 调用<code>vga_update_screen</code>更新屏幕.</li>
 </ul>
 <p>关于PA中使用的画图函数, 在缓冲区中存下一整个画面, 就像二维数组一样顺序存储, 而我们在程序中每次传入更改的位置<code>x,y</code>与更改的矩形区域长宽<code>w,h</code>, 我每要一一对应到缓存区的正确位置来修改缓存区.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>什么是操作系统</p>
 <p>操作系统是对计算机中所有资源进行调度分配功能的程序. 对计算机的状态进行控制.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>关于自陷操作的步骤</p>
 <p>首先调用<code>cte_init</code>将<code>simple_trap</code>设为自陷操作的回调函数, 同时设置<code>mtve</code>为<code>__am_asm_trap</code>. 调用<code>hello_intr</code>函数, 其中<code>while</code>循环一直调用<code>yield</code>函数. <code>yield</code>调用<code>ecall</code>系统调用.</p>
 <p><code>ecall</code>调用: 调用<code>isa_raise_intr</code>函数, 读取异常类型到<code>mcause</code>中, 保存当前pc值到<code>mepc</code>, 并且将pc设置为异常入口值(<code>mtve</code>的值, 即<code>__am_asm_trap</code>), 在<code>__am_asm_trap</code>中先跳转<code>__am_irq_handle</code>处理了异常信息, 调用了回调函数, 再<code>mret</code>.</p>
 <p><code>__am_irq_handle</code>:</p>
 <p><code>mret</code>调用: 将<code>mepc</code>中存的值返回到<code>pc</code>中 . 改变<code>mstatus</code>的状态值. 之后程序按照先前的状态正常运行.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p><code>ABI</code>和<code>API</code></p>
 <p><code>API</code>: <code>Aplication Programming Interface</code>:</p>
 <p>在程序员编写程序时所用到的接口, 包含函数, 结构, 变量等, 通过这些来访问具体的功能实现. 比如说, 在使用库函数时是通过头文件中的函数接口, 只有调用用正确的接口才能正常使用相应的功能.</p>
 <p><code>ABI</code>: <code>Apllication Binary Interface</code>: 机器语言级别的<code>API</code></p>
 <p>一个二进制文件如何组织如何运行. 在编译器编译程序时所用到的接口. 就是如何将高级语言转换为机器语言使其可以运行. 比如当调用一个函数是, 参数是如何传递的, 返回值是如何传递的.</p>
 </li>
-<li>
+<li class="lvl-3">
 <p>PA3.2 ques:</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-5">
 <p><code>hello程序</code>一开始在哪里?它是怎么出现内存中的? 为什么会出现在目前的内存位置?</p>
 <p><code>hello</code>一开始是在我们<code>ramdisk</code>里面, 通过我们写的<code>loader</code>函数, 将程序需要载入<code>PT_LOAD</code>的部分, 载入到内存<code>0x83000000</code>的位置上.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p>它的第一条指令在哪里? 究竟是怎么执行到它的第一条指令的?</p>
 <p>第一指令是在<code>_start.S</code>中的, 编译时如果提供了<code>_start.S</code>文件, 编译器会将其作为程序的入口, 在<code>main函数</code>前执行. 我们分析<code>elf文件</code>得到了程序的入口地址<code>entry</code>. 随后<code>((void(*)())entry)();</code>, 先将<code>entry</code>转换为函数指针, 在将调用函数, 就调用了<code>_start</code>函数, 程序开始运行了.</p>
 </li>
-<li>
+<li class="lvl-5">
 <p><code>hello程序</code>在不断地打印字符串, 每一个字符又是经历了什么才会最终出现在终端上?</p>
 <p>对于直接使用<code>write</code>系统调用, 直接将字符串通过<code>putch</code>将字符一个个输出.</p>
 <p>对于使用<code>printf</code>, 先将字符串格式化后将, 字符串存入缓冲区, 最后通过<code>write</code>调用将字符串全部输出.</p>
 </li>
 </ul>
 </li>
-<li>
+<li class="lvl-3">
 <p>在读取特殊文件时(如事件文件), 用<code>fropen</code>还是<code>open</code></p>
 </li>
-<li>
+<li class="lvl-4">
 <p>关于屏幕大小数据</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-6">
 <p>nemu: <code>vga.c</code>中创建屏幕的地方宏<code>SCREEM_H</code>， <code>SCREEM_H</code></p>
 </li>
-<li>
+<li class="lvl-6">
 <p>nano: <code>device.c</code>中<code>fb_write</code>函数中, 调用系统API中输入屏幕的长宽</p>
 </li>
-<li>
+<li class="lvl-6">
 <p>navy: <code>NDL.c</code>中<code>NDL_OpenCanvas</code>, 设置程序的画面输出长宽</p>
 </li>
 </ul>
@@ -2816,45 +2830,50 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>它们所服务的对象是SDL_Surface结构体, 长宽代表的是当前结构体描述的画面的长宽</p>
 <p>SDL_UpdateRect(): 将一个Surface结构体映射到画面上, 所以这个时候Surface应该就是我们的画布要显示到屏幕上. x,y是在屏幕上的位置, w,h是画布的长宽.</p>
 </li>
-<li>
+<li class="lvl-4">
 <p>仙剑奇侠传游戏框架</p>
 <p>播放商标, 开头动画 -&gt; 显示开始选择界面 -&gt; 游戏的主循环</p>
-<ul>
-<li>商标和开头动画, 如果支持播放<code>avi</code>视频就不会播放<code>mkf</code>中的动画了, 不支持就会播放<code>mkf</code>中的动画.</li>
-<li>开始选择页面, 先载入并显示背景图片, 再不断重绘文字来实现选择的动画</li>
-<li>游戏主循环: <code>PAL_LoadResources()加载游戏资源</code> -&gt; <code>PAL_ClearKeyState()消除上一帧的键盘缓冲</code> -&gt; <code>PAL_DelayUntil(dwTime)接受新的事件</code> -&gt; <code>UpdateFPS(now)计算FPS</code> -&gt; <code>PAL_StartFrame()执行游戏逻辑并更新屏幕</code>
-<ul>
-<li><code>PAL_LoadResources()</code>: 加载场景, 场景对应的<code>map</code>(可活动的区域), 场景中的人物, 主角及其跟随者</li>
-<li><code>PAL_StartFrame()</code>: 更新游戏逻辑(根据触发的事件来调用不同的脚本), 更新角色位置, 更新屏幕</li>
+<ul class="lvl-2">
+<li class="lvl-6">
+<p>商标和开头动画, 如果支持播放<code>avi</code>视频就不会播放<code>mkf</code>中的动画了, 不支持就会播放<code>mkf</code>中的动画.</p>
+</li>
+<li class="lvl-6">
+<p>开始选择页面, 先载入并显示背景图片, 再不断重绘文字来实现选择的动画</p>
+</li>
+<li class="lvl-6">
+<p>游戏主循环: <code>PAL_LoadResources()加载游戏资源</code> -&gt; <code>PAL_ClearKeyState()消除上一帧的键盘缓冲</code> -&gt; <code>PAL_DelayUntil(dwTime)接受新的事件</code> -&gt; <code>UpdateFPS(now)计算FPS</code> -&gt; <code>PAL_StartFrame()执行游戏逻辑并更新屏幕</code></p>
+<ul class="lvl-4">
+<li class="lvl-8"><code>PAL_LoadResources()</code>: 加载场景, 场景对应的<code>map</code>(可活动的区域), 场景中的人物, 主角及其跟随者</li>
+<li class="lvl-8"><code>PAL_StartFrame()</code>: 更新游戏逻辑(根据触发的事件来调用不同的脚本), 更新角色位置, 更新屏幕</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>
+<li class="lvl-4">
 <p>仙剑奇侠传的脚本引擎</p>
 <p>当任意与主逻辑不同的事件发生时, 就会触发脚本系统, 就会执行不同的脚本. 如果在主循环时遭遇战斗时就会触发战斗脚本, 战斗的主循环中也有怪物不同的行为脚本.</p>
 </li>
-<li>
+<li class="lvl-4">
 <p><code>nemu</code>的内存结构</p>
 <p>在<code>linker.ld</code>中我们可以发现, <code>nemu</code>的内存起点为<code>0x80000000</code>, 编译出来的程序会载入到这个地址上.</p>
 <p>对于<code>nanolite</code>, 编译作为应用程序后会载入到内存的起点, 对于<code>ramdisk</code> , 在<code>resourses.S</code>中我们发现它被载入到<code>.data</code>段中了.</p>
 <p>对于<code>navyapps</code>, 在<code>common.mk</code>为我们发现, 它们被编译到<code>0x83000000</code>上了. 当在<code>nanolite</code>中我们要执行<code>navyapps</code>是时会在<code>loader</code>函数中将程序的可载入部分载入到<code>0x83000000</code>附近. 所以说在讲义上讲, <code>ramdisk</code>不能过大, 否则在载入程序中后可能将<code>ramdisk</code>的内容覆盖.</p>
 </li>
-<li>
+<li class="lvl-4">
 <p>当你在终端键入<code>./hello</code>运行Hello World程序的时候, 计算机究竟做了些什么.</p>
 <p><code>终端识别文件是一个可执行文件</code> -&gt; <code>分析ELF文件载入程序, 找到程序的入口</code> -&gt; <code>开始执行程序</code></p>
 </li>
-<li>
+<li class="lvl-4">
 <p>仙剑奇侠传到底是如何运行的?</p>
-<ul>
-<li>
+<ul class="lvl-2">
+<li class="lvl-6">
 <p>读取像素:</p>
 <p>首先在<code>PAL_Init</code>中, 读取文件<code>mgo.mk</code>到<code>gpGlobals-&gt;f.fpMGO文件指针中</code>, <code>fopen</code> --&gt; … --&gt;<code>_open</code> --&gt; <code>_syscall</code> --&gt; <code>ecall</code> --&gt; <code>__am_asm_trap</code> --&gt; <code>__am_irq_handle</code> --&gt; <code>do_event</code> --&gt; <code>do_syscall</code> --&gt; <code>sys_open</code> --&gt; <code>fsopen</code></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">PAL_MKFReadChunk(buf, <span class="number">32000</span>, SPRITENUM_SPLASH_CRANE, gpGlobals-&gt;f.fpMGO);</span><br><span class="line">Decompress(buf, lpSpriteCrane, <span class="number">32000</span>);</span><br></pre></td></tr></table></figure>
 <p>将鹤的数据读入<code>lpSpriteCrane</code>中, 调用<code>fread</code>, 系统调用<code>read</code>, 最后调用函数<code>ramrisk_read</code>.</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	LPCBITMAPRLE lpFrame = PAL_SpriteGetFrame(lpSpriteCrane,cranepos[i][<span class="number">2</span>] =  \</span><br><span class="line">                           (cranepos[i][<span class="number">2</span>] + (iCraneFrame &amp; <span class="number">1</span>)) % <span class="number">8</span>);  <span class="comment">//读取出一帧的信息</span></span><br><span class="line">    cranepos[i][<span class="number">1</span>] += ((iImgPos &gt; <span class="number">1</span>) &amp;&amp; (iImgPos &amp; <span class="number">1</span>)) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">	PAL_RLEBlitToSurface(lpFrame, gpScreen, PAL_XY(cranepos[i][<span class="number">0</span>], cranepos[i][<span class="number">1</span>])); <span class="comment">//将一帧的信息拼接到gpScreen主屏幕上</span></span><br><span class="line">    cranepos[i][<span class="number">0</span>]--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
+<li class="lvl-6">
 <p>屏幕显示:</p>
 <p><code>VIDEO_UpdateScreen</code> --&gt; <code>SDL_UpdateRect</code> --&gt; <code>NDL_DrawRect</code> --&gt; <code>write</code> --&gt; … --&gt;<code>fs_write</code> --&gt; <code>fb_write</code> --&gt; <code>ioe_write</code> --&gt; <code>__am_gpu_fbdraw</code></p>
 </li>
@@ -2907,13 +2926,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/Git/'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Gits</p>
-          <p class='content'>Git教程  (菜鸟教程)
-结构介绍
-git的版本管理结构是一个有向图，每个版本是图中的一个节点，每个节点间用有向边来连接。
-主分支master: 是项目的主要方向.
-从主分支可以有多个bran...</p>
+        <a class='prev' href='/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>正则表达式</p>
+          <p class='content'>正则表达式: 是用于匹配和操作文本的强大工具
+https://deerchao.cn/tutorials/regex/regex.htm #教程
+https://regex101.com/   ...</p>
         </a>
       
       
@@ -2983,7 +3000,7 @@ MPI_init(	int* argc_p ,--&gt; main函数...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3"><span class="toc-text">C语言相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3"><span class="toc-text">汇编相关:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PA%E7%9B%B8%E5%85%B3"><span class="toc-text">PA相关</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text">C语言相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E7%9B%B8%E5%85%B3"><span class="toc-number">2.</span> <span class="toc-text">汇编相关:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PA%E7%9B%B8%E5%85%B3"><span class="toc-number">3.</span> <span class="toc-text">PA相关</span></a></li></ol>
     </div>
   </section>
 
@@ -3636,6 +3653,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   }
 </script>
 
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","sameAs":["https://github.com/volantis-x"],"description":"code"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://yude11.github.io/","name":"yude's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"http://yude11.github.io/categories/PA/","name":"PA"}},{"@type":"ListItem","position":3,"item":{"@id":"http://yude11.github.io/post/PA中零散知识/","name":"PA中零散知识"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"yude's blog","url":"http://yude11.github.io/","keywords":null,"description":"code","author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/","description":"code"},"publisher":{"@type":"Organization","name":"yude's blog","url":"http://yude11.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://yude11.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"PA中零散知识","description":"code","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://yude11.github.io/post/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/"},"author":{"@type":"Person","name":"yude","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://yude11.github.io/"},"publisher":{"@type":"Organization","name":"yude's blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://yude11.github.io/post/PA%E4%B8%AD%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/","wordCount":0,"datePublished":"2024-09-07T16:00:00.000Z","dateModified":"2026-03-10T07:09:31.109Z","articleSection":"PA","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
